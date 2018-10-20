@@ -1,0 +1,34 @@
+.seat-table-wrap {
+    width: 100%;
+    font-size: 18px;
+    overflow-y: auto;
+}
+.qfx-seats {
+    background-color: #fff;
+}
+
+.qfx-seats td {
+    vertical-align: top;
+}
+
+.reservedSeat {
+  background: blue
+}
+
+.soldSeat {
+  background: red
+}
+
+.normalSeat {
+  background: green
+}
+
+.seat-indicators {
+  margin-top: 15px;
+  padding: 15px 10px;
+  background-color: #fff;
+}
+
+.seat-indicators .seat-indicator.seat-indi-avai:before {
+  background-color: #03b49f;
+}
