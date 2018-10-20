@@ -37,21 +37,22 @@ class NavHeader extends Component {
   };
 
   render() {
+    const {
+      isAuthenticated,
+      user: { name, email },
+      logout
+    } = this.props;
+
     var styles = {
       appBar: {
-        flexWrap: "wrap"
+        flexWrap: "wrap",
+        backgroundColor: isAuthenticated && "#00796b"
       },
       tabs: {
         // width: "100%",
         color: "white"
       }
     };
-
-    const {
-      isAuthenticated,
-      user: { name, email },
-      logout
-    } = this.props;
 
     return (
       <div>
