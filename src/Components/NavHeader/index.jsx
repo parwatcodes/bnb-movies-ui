@@ -12,6 +12,8 @@ import FormControlLabel from "@material-ui/core/FormControlLabel";
 import FormGroup from "@material-ui/core/FormGroup";
 import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
+import { ToastContainer, toast } from "react-toastify";
+import { logout } from "../Login/actions";
 
 class NavHeader extends Component {
   constructor(props) {
@@ -47,7 +49,8 @@ class NavHeader extends Component {
 
     const {
       isAuthenticated,
-      user: { name, email }
+      user: { name, email },
+      logout,
     } = this.props;
 
     return (
@@ -129,10 +132,17 @@ class NavHeader extends Component {
                     {" "}
                     <MenuItem>Change passsword</MenuItem>
                   </Link>
-                  <Link to="/logout">
-                    {" "}
-                    <MenuItem>Logout</MenuItem>
-                  </Link>
+                    <MenuItem onClick={() => {
+                      logout();
+                      toast.success("User Logged Out", {
+                        position: "top-right",
+                        autoClose: 2000,
+                        hideProgressBar: false,
+                        closeOnClick: true,
+                        pauseOnHover: true,
+                        draggable: true
+                      })
+                    }} >Logout</MenuItem>
                 </Menu>
               </div>
             )}
@@ -150,7 +160,13 @@ const mapStateToProps = state => {
   };
 };
 
+const mapDispatchToProps = dispatch => {
+  return {
+    logout: () => dispatch(logout())
+  };
+};
+
 export default connect(
   mapStateToProps,
-  {}
+  mapDispatchToProps
 )(NavHeader);

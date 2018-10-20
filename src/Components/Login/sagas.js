@@ -21,8 +21,7 @@ function* workerLoginSaga(payload) {
 
     const resp = response.data;
     let { token } = resp;
-    // localStorage.setItem("jw÷ßtToken", token);÷
-    console.info(resp)
+    localStorage.setItem("jwtToken", token);
     yield put(loginSuccess(resp))
     yield put(
       toast.success("User Logged In", {
@@ -37,7 +36,6 @@ function* workerLoginSaga(payload) {
       history.push('/movies')
     // yield put({ type: LOGIN_SUCCESS, data: resp.data });
   } catch (error) {
-    console.log("error", error);
     yield put(loginFailure(error))
   }
 }

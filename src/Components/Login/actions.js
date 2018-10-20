@@ -17,12 +17,13 @@ export function loginSuccess(data) {
 export function loginFailure(error) {
   return {
     type: LOGIN_ERROR,
-    error: true,
+    error: true
   };
 }
 
-export function logout(){
-    return {
-        type: LOGOUT
-    };
+export function logout() {
+  localStorage.removeItem("jwtToken");
+  return {
+    type: LOGOUT
+  };
 }

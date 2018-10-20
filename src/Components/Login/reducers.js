@@ -14,6 +14,8 @@ export function user(state = userInitialState, action) {
   switch (action.type) {
     case LOGIN_SUCCESS:
       return action.data.user;
+    case LOGOUT:
+      return {};
     default:
       return state;
   }
@@ -34,7 +36,7 @@ export function auth(
         isAuthenticated: true
       };
     case LOGOUT:
-      return null;
+      return {};
     default:
       return state;
   }
