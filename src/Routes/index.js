@@ -4,7 +4,7 @@ import { Route, Switch, Redirect } from "react-router-dom";
 import Movie from "../Components/Movie/MovieContainer";
 import LoginComponent from "../Components/Login/LoginContainer";
 import SignupComponent from "../Components/Signup/SignupContainer";
-import Show from "../Components/Show/ShowComponnet";
+import Show from "../Components/Show/ShowComponent";
 import MovieDetails from "../Components/Movie/MovieDetails";
 import MovieForm from "../Components/Movie/MovieFormComponent";
 import CinemaComponent from "../Components/Cinemas/CinemaContainer";

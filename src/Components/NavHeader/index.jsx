@@ -46,7 +46,8 @@ class NavHeader extends Component {
     var styles = {
       appBar: {
         flexWrap: "wrap",
-        backgroundColor: isAuthenticated && "#00796b"
+        backgroundColor: isAuthenticated && "#00796b",
+        position: "fixed"
       },
       tabs: {
         // width: "100%",
@@ -59,7 +60,7 @@ class NavHeader extends Component {
         <AppBar
           showMenuIconButton={false}
           style={styles.appBar}
-          position="static"
+          // position="static"
         >
           <Tabs style={styles.tabs} textColor="red" centered>
             <Tab

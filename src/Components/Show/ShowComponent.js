@@ -1,16 +1,9 @@
 import React, { Component } from "react";
-import { render } from "react-dom";
-import Hello from "./Hello";
-import "./style.css";
+import { Link } from 'react-router-dom'
 
-class App extends Component {
-  constructor() {
-    super();
-    this.state = {
-      name: "React"
-    };
-  }
+import "./Show.css";
 
+class ShowDetails extends Component {
   render() {
     return (
       <div>
@@ -34,7 +27,10 @@ class App extends Component {
                 </div>
               </div>
               <div class="col-xs-12 col-sm-4 col-md-4">
-                <img class="img-responsive" src="/Home/GetImage?EventID=7319" />
+                <img
+                  class="img-responsive"
+                  src="https://image.tmdb.org/t/p/w300/gfJGlDaHuWimErCr5Ql0I8x9QSy.jpg"
+                />
               </div>
             </div>
             <div class="row">
@@ -121,13 +117,13 @@ class App extends Component {
                   </div>
                   <div class="col-xs-12 col-sm-8 col-md-9 pad-0">
                     <div class="show-times pad-sm-l-15">
-                      <a
-                        class="time-mark time-mark-available"
-                        href="/ShoppingCart/Index?ShowID=121374&amp;RatingDescription=PG&amp;RunTime=1 Hr43 mins&amp;ShowCategory=2D&amp;ShowDate=10/21/2018 8:45:00 AM&amp;TheatreName=QFX Civil Mall&amp;EventName=Jai Bhole&amp;occupancy=Available"
+                      <Link
+                        className="time-mark time-mark-available"
+                        to="/getMovieDetails/:movieID/:cinemaID"
                       >
                         <span class=" time">08:45</span>
                         <span class="hour">Hrs</span>
-                      </a>
+                      </Link>
                       <a
                         class="time-mark time-mark-available"
                         href="/ShoppingCart/Index?ShowID=121417&amp;RatingDescription=PG&amp;RunTime=1 Hr43 mins&amp;ShowCategory=2D&amp;ShowDate=10/21/2018 11:00:00 AM&amp;TheatreName=QFX Civil Mall&amp;EventName=Jai Bhole&amp;occupancy=Available"
@@ -302,4 +298,4 @@ class App extends Component {
   }
 }
 
-render(<App />, document.getElementById("root"));
+export default ShowDetails;

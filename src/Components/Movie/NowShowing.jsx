@@ -9,7 +9,6 @@ import {
   Button
 } from "reactstrap";
 import { Link, Route } from "react-router-dom";
-import Show from "../Show/ShowComponnet.jsx";
 
 import "./Movie.css";
 const NowShowing = props => {
