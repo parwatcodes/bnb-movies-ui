@@ -50,7 +50,7 @@ class NavHeader extends Component {
     const {
       isAuthenticated,
       user: { name, email },
-      logout,
+      logout
     } = this.props;
 
     return (
@@ -105,7 +105,14 @@ class NavHeader extends Component {
                   onClick={this.handleMenu}
                   color="inherit"
                 >
-                  Welcome, {name} &nbsp;
+                  <span
+                    style={{
+                      fontSize: "0.8125rem"
+                    }}
+                  >
+                    Welcome, {name} &nbsp;
+                  </span>
+
                   <AccountCircle />
                 </IconButton>
                 <Menu
@@ -132,7 +139,8 @@ class NavHeader extends Component {
                     {" "}
                     <MenuItem>Change passsword</MenuItem>
                   </Link>
-                    <MenuItem onClick={() => {
+                  <MenuItem
+                    onClick={() => {
                       logout();
                       toast.success("User Logged Out", {
                         position: "top-right",
@@ -141,8 +149,11 @@ class NavHeader extends Component {
                         closeOnClick: true,
                         pauseOnHover: true,
                         draggable: true
-                      })
-                    }} >Logout</MenuItem>
+                      });
+                    }}
+                  >
+                    Logout
+                  </MenuItem>
                 </Menu>
               </div>
             )}

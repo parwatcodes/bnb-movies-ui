@@ -9,9 +9,10 @@ import MovieDetails from "../Components/Movie/MovieDetails";
 import MovieForm from "../Components/Movie/MovieFormComponent";
 import CinemaComponent from "../Components/Cinemas/CinemaContainer";
 import CinemaForm from "../Components/Cinemas/CinemaFormComponent";
-import SeatDetails from "../Components/Seat/SeatContainer";
+import SeatMap from "../Components/Seat/SeatContainer";
 import ProfileComponent from "../Components/Profile/ProfileContainer";
 import ChangePasswordComponent from "../Components/ChangePassword/ChangePasswordContainer";
+import NotFound from "../Components/404/NotFoundComponent";
 
 const checkAuth = () => {
   const token = localStorage.getItem("jwtToken");
@@ -34,6 +35,20 @@ const AuthRoute = ({ component: Component, ...rest }) => (
   />
 );
 
+const AdminRoute = ({ component: Component, ...rest }) => (
+  <Route
+    {...rest}
+    render={props =>
+      checkAuth() && localStorage.getItem("role") === "1" ? (
+        <Component {...props} />
+      ) : (
+        // <Redirect to={{ pathname: "/movies" }} />
+        <Route component={NotFound} />
+      )
+    }
+  />
+);
+
 export default () => (
   <Switch>
     <Route exact path="/" component={Movie} />
@@ -42,15 +57,16 @@ export default () => (
     <Route path="/cinemas" component={CinemaComponent} />
     <Route path="/register" component={SignupComponent} />
     <AuthRoute path="/profile" component={ProfileComponent} />
-    <AuthRoute path={`/add-movie`} component={MovieForm} />
-    <AuthRoute path={`/add-cinema`} component={CinemaForm} />
-    <AuthRoute path={`/edit-movie/:movieID`} component={MovieForm} />
+    <AdminRoute path={`/add-movie`} component={MovieForm} />
+    <AdminRoute path={`/add-cinema`} component={CinemaForm} />
+    <AdminRoute path={`/edit-movie/:movieID`} component={MovieForm} />
     <Route path={`/getShowDetails/:movieID`} component={Show} />
     <Route exact path={`/getMovieDetails/:movieID`} component={MovieDetails} />
     <AuthRoute
       path={`/getMovieDetails/:movieID/:cinemaID`}
-      component={SeatDetails}
+      component={SeatMap}
     />
     <AuthRoute path="/change-password" component={ChangePasswordComponent} />
+    <Route component={NotFound} />
   </Switch>
 );

@@ -20,7 +20,8 @@ class MovieContainer extends Component {
 const mapStateToProps = state => {
   return {
     movies: state.movies.data,
-    loading: state.movies.loading
+    loading: state.movies.loading,
+    user: state.user
   };
 };
 

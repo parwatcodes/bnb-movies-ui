@@ -20,8 +20,9 @@ function* workerLoginSaga(payload) {
     });
 
     const resp = response.data;
-    let { token } = resp;
+    let { token, user } = resp;
     localStorage.setItem("jwtToken", token);
+    localStorage.setItem("role", user.role)
     yield put(loginSuccess(resp))
     yield put(
       toast.success("User Logged In", {

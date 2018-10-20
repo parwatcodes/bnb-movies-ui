@@ -1,34 +1,108 @@
-.seat-table-wrap {
-    width: 100%;
-    font-size: 18px;
-    overflow-y: auto;
-}
-.qfx-seats {
-    background-color: #fff;
+body {
+  font-family: 'Segoe UI', 'Roboto', Tahoma;
 }
 
-.qfx-seats td {
-    vertical-align: top;
+.checkout {
+    display: flex;
+    padding: 15px;
+    width: calc(50% - 80px);
 }
 
-.reservedSeat {
-  background: blue
+.page2 .checkout .sinopsis {
+    transform: translateX(0);
+    opacity: 1;
 }
 
-.soldSeat {
-  background: red
+.checkout .sinopsis {
+    width: 220px;
 }
 
-.normalSeat {
-  background: green
+button.back {
+    border: none;
+    background-color: transparent;
+    outline: none;
+    margin-bottom: 8px;
+    cursor: pointer;
 }
 
-.seat-indicators {
-  margin-top: 15px;
-  padding: 15px 10px;
-  background-color: #fff;
+.checkout .legend {
+    float: right;
+    text-align: right;
+    margin-right: 15px;
 }
 
-.seat-indicators .seat-indicator.seat-indi-avai:before {
-  background-color: #03b49f;
+.checkout .seats {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 30px;
+}
+
+.checkout .screen {
+    height: 15px;
+    background-color: #e1cfba;
+    font-size: 12px;
+    text-align: center;
+    margin-top: 8px;
+}
+
+
+.checkout .total {
+    position: absolute;
+    bottom: 20px;
+    right: 17px;
+    text-align: right;
+}
+
+.checkout img.cover {
+    height: 320px;
+    width: 220px;
+    background-position: center;
+    background-size: cover;
+}
+
+.checkout .seat.taken, .checkout .legend li:last-child:after {
+    background-color: #b71c1c;
+}
+
+.checkout .seat {
+    margin: 2px;
+    padding: 3px;
+    background: green;
+    color: white;
+    border-radius: 2px;
+    width: 30px;
+    text-align: center;
+    cursor: pointer;
+    transition: all .4s ease;
+}
+
+.checkout .legend li:after {
+    content: "";
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    background-color:green;
+    border-radius: 2px;
+    position: relative;
+    right: -5px;
+    top: 3px;
+}
+
+.page2 .checkout section {
+    transform: translateX(0);
+    opacity: 1;
+}
+.checkout section {
+    padding-left: 15px;
+}
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+div {
+    display: block;
 }

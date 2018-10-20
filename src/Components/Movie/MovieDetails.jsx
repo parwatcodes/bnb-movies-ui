@@ -87,7 +87,7 @@ class MovieDetails extends Component {
                 <p>
                   <span class="col-md-5 col-xs-6">Releasing Date :</span>
                   <span class="col-md-7 col-xs-6">
-                    {moment(release_date).format("dddd")} - 
+                    {moment(release_date).format("dddd")},
                     {moment(release_date).format("MMM Do YYYY")}
                   </span>
                 </p>

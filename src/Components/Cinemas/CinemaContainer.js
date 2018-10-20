@@ -18,11 +18,13 @@ class CinemaContainer extends Component {
   render() {
     return (
       <div className="p-5 width-50-center">
-        <Link to="/add-cinema">
-          <Button type="button" variant="contained" color="primary">
-            Add a cinema
-          </Button>
-        </Link>
+        {this.props.user.role === 1 && (
+          <Link to="/add-cinema">
+            <Button type="button" variant="contained" color="primary">
+              Add a cinema
+            </Button>
+          </Link>
+        )}
         <CinemaComponent {...this.props} />
       </div>
     );
@@ -32,7 +34,8 @@ class CinemaContainer extends Component {
 const mapStateToProps = state => {
   return {
     cinemas: state.cinemas.data,
-    loading: state.cinemas.loading
+    loading: state.cinemas.loading,
+    user: state.user
   };
 };
 

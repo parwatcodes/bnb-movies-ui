@@ -1,4 +1,5 @@
 import { LOGIN_REQUEST, LOGIN_SUCCESS, LOGIN_ERROR, LOGOUT } from "./constants";
+import history from "../../history";
 
 export function login(data) {
   return {
@@ -23,6 +24,7 @@ export function loginFailure(error) {
 
 export function logout() {
   localStorage.removeItem("jwtToken");
+  history.push("/movies");
   return {
     type: LOGOUT
   };
