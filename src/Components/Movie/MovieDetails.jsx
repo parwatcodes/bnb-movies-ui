@@ -38,12 +38,16 @@ class MovieDetails extends Component {
         run_time,
         genre
       } = this.state.movie;
-      console.log("ddd", trailer_link, typeof trailer_link);
       const movieID = this.props.match.params.movieID;
 
       return (
         <div className="p-5 width-50-center">
-          <Link to={`/edit-movie/${movieID}`}>
+          <Link
+            to={`/edit-movie/${movieID}`}
+            params={{
+              action: "edit"
+            }}
+          >
             <Button variant="contained" color="primary" type="button">
               Edit Movie
             </Button>
@@ -111,8 +115,8 @@ class MovieDetails extends Component {
             </div>
           </div>
           <div class="mar-t-15">
-            <h3 class="mar-0">SYNOPSIS</h3>
-            <h4>THE PLOT</h4>
+            <br />
+            <br />
             <p>{description}</p>
           </div>
         </div>

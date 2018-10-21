@@ -13,6 +13,8 @@ import SeatMap from "../Components/Seat/SeatContainer";
 import ProfileComponent from "../Components/Profile/ProfileContainer";
 import ChangePasswordComponent from "../Components/ChangePassword/ChangePasswordContainer";
 import NotFound from "../Components/404/NotFoundComponent";
+import BillComponent from "../Components/Bill/BillComponent";
+import MovieEditForm from "../Components/Movie/MovieEditForm";
 
 const checkAuth = () => {
   const token = localStorage.getItem("jwtToken");
@@ -59,7 +61,7 @@ export default () => (
     <AuthRoute path="/profile" component={ProfileComponent} />
     <AdminRoute path={`/add-movie`} component={MovieForm} />
     <AdminRoute path={`/add-cinema`} component={CinemaForm} />
-    <AdminRoute path={`/edit-movie/:movieID`} component={MovieForm} />
+    <AdminRoute path={`/edit-movie/:movieID`} component={MovieEditForm} />
     <Route path={`/getShowDetails/:movieID`} component={Show} />
     <Route exact path={`/getMovieDetails/:movieID`} component={MovieDetails} />
     <AuthRoute
@@ -67,6 +69,7 @@ export default () => (
       component={SeatMap}
     />
     <AuthRoute path="/change-password" component={ChangePasswordComponent} />
+    <Route path="/bill" component={BillComponent} />
     <Route component={NotFound} />
   </Switch>
 );
