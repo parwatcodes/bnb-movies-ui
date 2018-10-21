@@ -3,8 +3,12 @@ import { Link } from "react-router-dom";
 
 import "./Show.css";
 
+// IDEA: Possible implementations -@mac at 10/21/2018, 11:21:15 PM
+// Add a new component to select the movies for today, tommorrow and upcoming days
 class ShowDetails extends Component {
   render() {
+    let movieID = this.props.match.params.movieID;
+
     return (
       <div>
         <a class="index-links undefined" href="/jackets?f=gender%3Amen">
@@ -283,12 +287,6 @@ class ShowDetails extends Component {
                     </div>
                   </div>
                 </div>
-              </div>
-
-              <div class="time-indicators">
-                <div class="time-indicator time-indi-sold">Sold Out</div>
-                <div class="time-indicator time-indi-fast">Filling Fast</div>
-                <div class="time-indicator time-indi-avail">Available</div>
               </div>
             </div>
           </div>

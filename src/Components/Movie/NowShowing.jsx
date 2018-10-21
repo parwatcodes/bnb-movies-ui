@@ -42,7 +42,7 @@ const NowShowing = props => {
                   >
                     {movie.name}
                   </CardTitle>
-                  <Link to={`/getShowDetails/${movie.id}`}>
+                  <Link to={`/getShowDetails/${movie._id}`}>
                     <img
                       src="https://png.icons8.com/ios/1600/two-tickets.png"
                       className="ticket-icon"

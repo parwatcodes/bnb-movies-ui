@@ -1,5 +1,5 @@
 .cardWrap {
-  width: 27em;
+  width: 30em;
   margin: 3em auto;
   color: #fff;
   font-family: sans-serif;
@@ -22,12 +22,12 @@
 .cardLeft {
   border-top-left-radius: 8px;
   border-bottom-left-radius: 8px;
-  width: 18em;
+  width: 22em;
   height: 14em;
 }
 
 .cardRight {
-  width: 6.5em;
+  width: 8em;
   height: 14em;
   border-left: 0.18em dashed #fff;
   border-top-right-radius: 8px;
@@ -137,11 +137,18 @@ h1 span {
 .number {
   text-align: center;
   text-transform: uppercase;
+  margin-top: 51px;
 }
 .number h3 {
   color: #e84c3d;
   margin: 0.9em 0 0 0;
   font-size: 2.5em;
+}
+
+.number h6 {
+  color: #e84c3d;
+  margin: 0.9em 0 0 0;
+  /* font-size: 2.5em; */
 }
 .number span {
   display: block;
@@ -151,7 +158,7 @@ h1 span {
 .barcode {
   height: 2em;
   width: 0;
-  margin: 1.2em 0 0 -0.2em;
+  margin: 1.2em 0 0 0.4em;
   box-shadow: 1px 0 0 1px #343434, 5px 0 0 1px #343434, 10px 0 0 1px #343434,
     11px 0 0 1px #343434, 15px 0 0 1px #343434, 18px 0 0 1px #343434,
     22px 0 0 1px #343434, 23px 0 0 1px #343434, 26px 0 0 1px #343434,
