@@ -28,3 +28,11 @@
   z-index: 1;
   top: 10px;
 }
+
+.card {
+  background: linear-gradient(to bottom, #343434 0%, #e84c3d 26%, #ecedef 26%, #ecedef 100%);
+  /* height: 11em; */
+  float: left;
+  position: relative;
+  padding: 1em;
+}

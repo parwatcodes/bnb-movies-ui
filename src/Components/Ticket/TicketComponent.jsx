@@ -8,9 +8,9 @@ class TicketComponent extends Component {
   render() {
     return (
       <div class="cardWrap">
-        <div class="card cardLeft">
+        <div class="tcard cardLeft">
           <h1>
-            Startup <span>Cinema</span>
+            QFX Labim <span>Cinema</span>
           </h1>
           <div class="title">
             <h2>How I met your Mother</h2>
@@ -29,7 +29,7 @@ class TicketComponent extends Component {
             <span>time</span>
           </div>
         </div>
-        <div class="card cardRight">
+        <div class="tcard cardRight">
           <div class="eye" />
           <div class="number">
             <h3>156</h3>

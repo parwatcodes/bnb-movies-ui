@@ -3,7 +3,6 @@ import { withRouter, Link } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 
 import NowShowing from "./NowShowing";
-import ComingSoon from "./CommingSoon";
 
 const MovieComponent = props => {
   let { movies, cinemas } = props;
