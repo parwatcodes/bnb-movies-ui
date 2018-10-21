@@ -3,6 +3,14 @@ import { withFormik } from "formik";
 import { connect } from "react-redux";
 import * as Yup from "yup";
 class ChangePassword extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      newPassword: "",
+      confirmPassword: ""
+    };
+  }
+
   render() {
     const {
       values,
@@ -95,10 +103,9 @@ const EnhancedForm = withFormik({
     };
   },
   validationSchema: Yup.object().shape({
-    name: Yup.string().required("name is required!"),
-    address: Yup.string().required("address is required"),
-    phone: Yup.number().required("Please enter the phone"),
-    seats: Yup.string().required("Please enter your seats")
+    newPassword: Yup.string()
+    .min(6, 'Password has to be longer than 6 characters!')
+    .required('Password is required!')
   }),
 
   handleSubmit: (values, { props: { addCinema }, setSubmitting }) => {

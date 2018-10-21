@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardActions from "@material-ui/core/CardActions";
@@ -22,16 +23,20 @@ class CinemaComponent extends Component {
   render() {
     const { classes, cinemas, loading, deleteCinema } = this.props;
     if (loading) {
-      return <p>Loading...</p>
+      return <p>Loading...</p>;
     }
 
     return (
       <div>
         {cinemas.length
           ? cinemas.map((cinema, index) => (
-              <div key={index} className="p-5 width-50-center" style={{
-                display: "inline-block"
-              }}>
+              <div
+                key={index}
+                className="p-3 width-50-center"
+                style={{
+                  display: "inline-block"
+                }}
+              >
                 <Card className={classes.card}>
                   <CardActionArea>
                     <CardMedia
@@ -58,9 +63,11 @@ class CinemaComponent extends Component {
                     </CardContent>
                   </CardActionArea>
                   <CardActions>
-                    <Button size="small" color="primary">
-                      Share
-                    </Button>
+                    <Link to={`/edit-cinema/${cinema._id}`}>
+                      <Button size="small" color="primary">
+                        Edit
+                      </Button>
+                    </Link>
                     <Button
                       size="small"
                       color="primary"

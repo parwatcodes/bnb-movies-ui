@@ -6,9 +6,7 @@ import Select from "react-select";
 class Profile extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-        
-    };
+    this.state = {};
   }
 
   render() {
@@ -29,10 +27,13 @@ class Profile extends Component {
       <div>
         <form className="p-5 width-50-center" onSubmit={handleSubmit}>
           <h1>Profile</h1>
+
           <div className="form-group">
+          Name
             <input
               name="name"
               type="text"
+              value={values.name}
               className={`form-control ${errors.name &&
                 touched.name &&
                 "is-invalid"}`}
@@ -131,10 +132,7 @@ class Profile extends Component {
 
 const EnhancedForm = withFormik({
   mapPropsToValues: props => {
-    return {
-      // email: props.user.email,
-      // password: props.user.password,
-    };
+    return { ...props.user };
   },
   validationSchema: Yup.object().shape({
     name: Yup.string().required("name is required!"),
@@ -148,7 +146,11 @@ const EnhancedForm = withFormik({
   }
 })(Profile);
 
-const mapStateToProps = state => {};
+const mapStateToProps = state => {
+  return {
+    user: state.user
+  };
+};
 
 const mapDispatchToProps = dispatch => {
   return {

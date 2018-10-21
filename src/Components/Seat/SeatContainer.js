@@ -122,6 +122,36 @@ class SeatMap extends Component {
               <div class="seat taken aisle-top">I6</div>
             </div>
             <div class="screen">screen</div>
+            <br />
+            <br />
+            <div class="displayerBoxes">
+              <center>
+                <table class="Displaytable">
+                  <tr>
+                    <th>Name</th>
+                    <th>Number of Seats</th>
+                    <th>Seats</th>
+                  </tr>
+                  <tr>
+                    <td>
+                      <textarea id="nameDisplay" disabled>
+                        Ram
+                      </textarea>
+                    </td>
+                    <td>
+                      <textarea id="NumberDisplay" disabled>
+                        3
+                      </textarea>
+                    </td>
+                    <td>
+                      <textarea id="seatsDisplay" disabled>
+                        A8, A9, A10
+                      </textarea>
+                    </td>
+                  </tr>
+                </table>
+              </center>
+            </div>
             <div
               style={{
                 marginTop: "77px"

@@ -15,6 +15,8 @@ import ChangePasswordComponent from "../Components/ChangePassword/ChangePassword
 import NotFound from "../Components/404/NotFoundComponent";
 import BillComponent from "../Components/Bill/BillComponent";
 import MovieEditForm from "../Components/Movie/MovieEditForm";
+import EditCinemaForm from "../Components/Cinemas/EditCinemaComponent";
+import TicketContainer from "../Components/Ticket/TicketContainer";
 
 const checkAuth = () => {
   const token = localStorage.getItem("jwtToken");
@@ -70,6 +72,8 @@ export default () => (
     />
     <AuthRoute path="/change-password" component={ChangePasswordComponent} />
     <Route path="/bill" component={BillComponent} />
+    <AdminRoute path="/edit-cinema/:cineID" component={EditCinemaForm} />
+    <AuthRoute path="/my-tickets" component={TicketContainer} />
     <Route component={NotFound} />
   </Switch>
 );
