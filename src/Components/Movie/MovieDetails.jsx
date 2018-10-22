@@ -52,14 +52,14 @@ class MovieDetails extends Component {
               Edit Movie
             </Button>
           </Link>
-          <div class="row">
-            <div class="col-md-8">
-              <div class="embed-responsive embed-responsive-16by9">
+          <div className="row">
+            <div className="col-md-8">
+              <div className="embed-responsive embed-responsive-16by9">
                 <iframe
                   id="youtubePlayer"
-                  class="embed-responsive-item"
-                  frameborder="0"
-                  allowfullscreen="1"
+                  className="embed-responsive-item"
+                  frameBorder="0"
+                  allowFullScreen="1"
                   title="YouTube video player"
                   width="350"
                   height="260"
@@ -71,50 +71,50 @@ class MovieDetails extends Component {
                   }
                 />
               </div>
-              <div class="mar-t-15 mar-b-15">
-                <a class="ticket" href="/Home/GetTicketBookDetail?EventID=7308">
-                  <i class="exo exo-ticket" />
+              <div className="mar-t-15 mar-b-15">
+                <a className="ticket" href="/Home/GetTicketBookDetail?EventID=7308">
+                  <i className="exo exo-ticket" />
                 </a>
                 <a
-                  class="fb-share"
+                  className="fb-share"
                   target="_blank"
                   href="https://www.facebook.com/sharer/sharer.php?u=https://www.qfxcinemas.com/Home/GetMovieDetails?EventID=7308"
                 >
-                  <i class="exo exo-fb-share" />
+                  <i className="exo exo-fb-share" />
                 </a>
               </div>
             </div>
-            <div class="col-md-4">
-              <h3 class="mar-t-0 movie-title">{name}</h3>
-              {/* <p class="movie-type">Adult</p> */}
-              <div class="movie-info">
+            <div className="col-md-4">
+              <h3 className="mar-t-0 movie-title">{name}</h3>
+              {/* <p className="movie-type">Adult</p> */}
+              <div className="movie-info">
                 <p>
-                  <span class="col-md-5 col-xs-6">Releasing Date :</span>
-                  <span class="col-md-7 col-xs-6">
+                  <span className="col-md-5 col-xs-6">Releasing Date :</span>
+                  <span className="col-md-7 col-xs-6">
                     {moment(release_date).format("dddd")},
                     {moment(release_date).format("MMM Do YYYY")}
                   </span>
                 </p>
                 <p>
-                  <span class="col-md-5 col-xs-6">Run Time :</span>
-                  <span class="col-md-7 col-xs-6">{run_time}</span>
+                  <span className="col-md-5 col-xs-6">Run Time :</span>
+                  <span className="col-md-7 col-xs-6">{run_time}</span>
                 </p>
                 <p>
-                  <span class="col-md-5 col-xs-6">Director :</span>
-                  <span class="col-md-7 col-xs-6">{director}</span>
+                  <span className="col-md-5 col-xs-6">Director :</span>
+                  <span className="col-md-7 col-xs-6">{director}</span>
                 </p>
                 <p>
-                  <span class="col-md-5 col-xs-6">Genre :</span>
-                  <span class="col-md-7 col-xs-6">{genre}</span>
+                  <span className="col-md-5 col-xs-6">Genre :</span>
+                  <span className="col-md-7 col-xs-6">{genre}</span>
                 </p>
                 <p>
-                  <span class="col-md-5 col-xs-6">Cast :</span>
-                  <span class="col-md-7 col-xs-6">{cast}</span>
+                  <span className="col-md-5 col-xs-6">Cast :</span>
+                  <span className="col-md-7 col-xs-6">{cast}</span>
                 </p>
               </div>
             </div>
           </div>
-          <div class="mar-t-15">
+          <div className="mar-t-15">
             <br />
             <br />
             <p>{description}</p>

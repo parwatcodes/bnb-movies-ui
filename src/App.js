@@ -11,6 +11,7 @@ class App extends Component {
     return (
       <Fragment>
         <NavBar />
+        <div style={{ borderTop: "solid 5px #c4a95f", paddingTop: 10 }}></div>
         <ToastContainer
           position="top-left"
           autoClose={5000}

@@ -46,23 +46,23 @@ class NavHeader extends Component {
     var styles = {
       appBar: {
         flexWrap: "wrap",
-        backgroundColor: isAuthenticated && "#00796b",
+        backgroundColor: isAuthenticated && "#00796b"
         // position: "fixed"
       },
       tabs: {
         // width: "100%",
-        color: "white"
+        color: "inherit"
       }
     };
 
     return (
       <div>
         <AppBar
-          showMenuIconButton={false}
+          showmenuiconbutton="false"
           style={styles.appBar}
           position="static"
         >
-          <Tabs style={styles.tabs} textColor="red" centered>
+          <Tabs style={styles.tabs} textcolor="primary" centered>
             <Tab
               label="Home"
               to="/movies"
@@ -78,6 +78,12 @@ class NavHeader extends Component {
             <Tab
               label="Movies"
               to="/movies"
+              component={Link}
+              style={styles.tabs}
+            />
+            <Tab
+              label="Contact"
+              to="/contact"
               component={Link}
               style={styles.tabs}
             />

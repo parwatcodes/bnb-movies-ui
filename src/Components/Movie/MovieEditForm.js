@@ -57,8 +57,8 @@ class Thumb extends React.Component {
     }
 
     return (
-      <div class="avatar-upload">
-        {/* <div class="avatar-edit" onClick={this.removeUploadedImage}>
+      <div className="avatar-upload">
+        {/* <div className="avatar-edit" onClick={this.removeUploadedImage}>
           X
         </div> */}
         <img
@@ -164,9 +164,9 @@ class MovieEditForm extends Component {
     return (
       <Form className="p-5 width-50-center" onSubmit={handleSubmit}>
         <FormGroup>
-          {/* <div class="col-xs-12 col-sm-4 col-md-4"> */}
+          {/* <div className="col-xs-12 col-sm-4 col-md-4"> */}
           {!values.poster && (
-            <img class="img-responsive center" src={values.poster_link} />
+            <img className="img-responsive center" src={values.poster_link} />
           )}
           {/* </div> */}
         </FormGroup>

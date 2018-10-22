@@ -11,7 +11,7 @@ class ShowDetails extends Component {
 
     return (
       <div>
-        <a class="index-links undefined" href="/jackets?f=gender%3Amen">
+        <a class="index-links" href="/jackets?f=gender%3Amen">
           <div>
             More Jackets
             <span class="index-arrow" />
@@ -97,7 +97,7 @@ class ShowDetails extends Component {
                     role="button"
                     data-slide="prev"
                     sumvalue="-1"
-                    onclick="leftRightArrowClick(this)"
+                    onClick="leftRightArrowClick(this)"
                   />
                   <a
                     class="right carousel-control"
@@ -106,7 +106,7 @@ class ShowDetails extends Component {
                     role="button"
                     data-slide="next"
                     sumvalue="1"
-                    onclick="leftRightArrowClick(this)"
+                    onClick="leftRightArrowClick(this)"
                   />
                 </div>
               </div>

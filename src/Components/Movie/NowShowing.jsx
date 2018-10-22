@@ -9,8 +9,9 @@ import {
   Button
 } from "reactstrap";
 import { Link, Route } from "react-router-dom";
-
+import shortID from 'shortid'
 import "./Movie.css";
+
 const NowShowing = props => {
   const { movies, cinemas } = props;
   return (
@@ -26,6 +27,7 @@ const NowShowing = props => {
                 display: "inline-block",
                 verticalAlign: "top"
               }}
+              key={shortID.generate()}
             >
               <Link to={`/getMovieDetails/${movie._id}`}>
                 <Card
