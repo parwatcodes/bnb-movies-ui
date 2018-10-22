@@ -115,7 +115,7 @@ const SignupForm = props => {
             { value: "male", label: "Male" },
             { value: "female", label: "Female" }
           ]}
-          value={values.gender}
+          // value={values.gender}
           onChange={event => {
             setFieldValue("gender", event.value)
           }}

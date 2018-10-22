@@ -29,7 +29,6 @@ class Profile extends Component {
           <h1>Profile</h1>
 
           <div className="form-group">
-          Name
             <input
               name="name"
               type="text"
@@ -109,7 +108,10 @@ class Profile extends Component {
                 { value: "male", label: "Male" },
                 { value: "female", label: "Female" }
               ]}
-              value={values.gender}
+              value={{
+                value: values.gender,
+                label: values.gender === "male" ? "Male" : values.gender
+              }}
               onChange={event => {
                 setFieldValue("gender", event.value);
               }}
@@ -122,7 +124,7 @@ class Profile extends Component {
             // disabled={isSubmitting}
           >
             {/* {isSubmitting ? "WAIT PLIZ" : "CLICK ME"} */}
-            Edit
+            Update
           </button>
         </form>
       </div>

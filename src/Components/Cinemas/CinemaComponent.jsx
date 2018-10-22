@@ -21,7 +21,7 @@ const styles = {
 
 class CinemaComponent extends Component {
   render() {
-    const { classes, cinemas, loading, deleteCinema } = this.props;
+    const { classes, cinemas, loading, deleteCinema, user: { role } } = this.props;
     if (loading) {
       return <p>Loading...</p>;
     }
@@ -62,22 +62,24 @@ class CinemaComponent extends Component {
                       </Typography>
                     </CardContent>
                   </CardActionArea>
-                  <CardActions>
-                    <Link to={`/edit-cinema/${cinema._id}`}>
-                      <Button size="small" color="primary">
-                        Edit
+                  {role === 1 && (
+                    <CardActions>
+                      <Link to={`/edit-cinema/${cinema._id}`}>
+                        <Button size="small" color="primary">
+                          Edit
+                        </Button>
+                      </Link>
+                      <Button
+                        size="small"
+                        color="primary"
+                        onClick={() => {
+                          deleteCinema(cinema._id);
+                        }}
+                      >
+                        REMOVE CINEMA
                       </Button>
-                    </Link>
-                    <Button
-                      size="small"
-                      color="primary"
-                      onClick={() => {
-                        deleteCinema(cinema._id);
-                      }}
-                    >
-                      REMOVE CINEMA
-                    </Button>
-                  </CardActions>
+                    </CardActions>
+                  )}
                 </Card>
               </div>
             ))
