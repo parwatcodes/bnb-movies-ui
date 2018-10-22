@@ -46,7 +46,7 @@ class NavHeader extends Component {
     var styles = {
       appBar: {
         flexWrap: "wrap",
-        backgroundColor: isAuthenticated && "#00796b"
+        backgroundColor: isAuthenticated ? "#00796b" : "#6B369B"
         // position: "fixed"
       },
       tabs: {

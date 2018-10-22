@@ -26,20 +26,7 @@ class Contact extends Component {
             />
           </a>
         </div> */}
-        <div
-          style={{
-            float: "left",
-            fontFamily: "Arial",
-            fontSize: "11pt",
-            color: "#1b1464",
-            backgroundColor: "white",
-            width: 350,
-            height: 300,
-            padding: 3,
-            verticalAlign: "top"
-          }}
-        >
-          <table>
+                <table align="center">
             <tbody>
               <tr>
                 <td style={{ fontSize: 24, fontWeight: "bold" }}>
@@ -138,7 +125,6 @@ class Contact extends Component {
             </tbody>
           </table>
         </div>
-      </div>
     );
   }
 }

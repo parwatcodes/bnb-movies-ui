@@ -53,6 +53,7 @@ class MovieForm extends Component {
   };
 
   handleShowCheck = (event, cineID, show) => {
+    debugger
     let { name, value } = event;
     console.log("ss", this.state, cineID);
     this.setState({
@@ -267,6 +268,7 @@ class MovieForm extends Component {
                       </ModalHeader>
                       <ModalBody>
                         {cineID}
+                        {console.log("value of cineid >>> ", cineID)}
                         <FormGroup check>
                           <Label check>
                             <Input

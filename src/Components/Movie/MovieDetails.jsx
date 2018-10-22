@@ -89,27 +89,41 @@ class MovieDetails extends Component {
               {/* <p className="movie-type">Adult</p> */}
               <div className="movie-info">
                 <p>
+                  <div className="row">
                   <span className="col-md-5 col-xs-6">Releasing Date :</span>
                   <span className="col-md-7 col-xs-6">
                     {moment(release_date).format("dddd")},
                     {moment(release_date).format("MMM Do YYYY")}
                   </span>
+                  </div>
                 </p>
                 <p>
+                <div className="row">
                   <span className="col-md-5 col-xs-6">Run Time :</span>
                   <span className="col-md-7 col-xs-6">{run_time}</span>
+                  </div>
+
                 </p>
                 <p>
+                <div className="row">
                   <span className="col-md-5 col-xs-6">Director :</span>
                   <span className="col-md-7 col-xs-6">{director}</span>
+                  </div>
+
                 </p>
                 <p>
+                <div className="row">
                   <span className="col-md-5 col-xs-6">Genre :</span>
                   <span className="col-md-7 col-xs-6">{genre}</span>
+                  </div>
+
                 </p>
                 <p>
+                <div className="row">
                   <span className="col-md-5 col-xs-6">Cast :</span>
                   <span className="col-md-7 col-xs-6">{cast}</span>
+                  </div>
+
                 </p>
               </div>
             </div>

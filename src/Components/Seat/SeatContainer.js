@@ -13,7 +13,10 @@ class SeatMap extends Component {
 
   render() {
     return (
-      <div>
+      <div
+      style={{
+        textAlign: "center"
+      }}>
         <div class="checkout">
           <div class="sinopsis">
             <button class="back">
@@ -154,7 +157,7 @@ class SeatMap extends Component {
             </div>
             <div
               style={{
-                marginTop: "77px"
+                marginTop: "50px"
               }}
             >
               <small>Total </small>

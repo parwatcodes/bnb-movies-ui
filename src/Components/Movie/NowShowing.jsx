@@ -16,31 +16,26 @@ const NowShowing = props => {
   const { movies, cinemas } = props;
   return (
     <div
+    className="row"
       style={{
         textAlign: "center"
       }}
     >
       {movies.length
         ? movies.map(movie => (
-            <div
+         
+              <Link
+              className="col-4"
               style={{
-                display: "inline-block",
-                verticalAlign: "top"
+                "padding": "10px",
+                "margin": "0px"
               }}
-              key={shortID.generate()}
-            >
-              <Link to={`/getMovieDetails/${movie._id}`}>
+               to={`/getMovieDetails/${movie._id}`}>
                 <Card
-                  style={{
-                    width: "250px",
-                    margin: "15px 40px 40px 10px"
-                  }}
+                style = {{"min-height": "300px", "min-width": "200px"}}
                 >
                   <CardImg src={movie.poster_link} />
                   <CardTitle
-                    style={{
-                      textAlign: "center"
-                    }}
                   >
                     {movie.name}
                   </CardTitle>
@@ -52,8 +47,7 @@ const NowShowing = props => {
                   </Link>
                 </Card>
               </Link>
-            </div>
-          ))
+                    ))
         : null}
     </div>
   );

@@ -41,7 +41,7 @@ const LoginForm = props => {
       <div className="form-group">
         <input
           name="password"
-          type="text"
+          type="password"
           className={`form-control ${errors.password &&
             touched.password &&
             "is-invalid"}`}
