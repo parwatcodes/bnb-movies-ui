@@ -108,7 +108,7 @@ class NavHeader extends Component {
             {isAuthenticated && (
               <div>
                 <IconButton
-                  // aria-owns={open ? "menu-appbar" : null}
+                  aria-owns={Boolean(this.state.anchorEl) ? "menu-appbar" : null}
                   aria-haspopup="true"
                   onClick={this.handleMenu}
                   color="inherit"
@@ -138,18 +138,19 @@ class NavHeader extends Component {
                   onClose={this.handleClose}
                 >
                   <Link to="/profile">
-                    <MenuItem>My profile</MenuItem>
+                    <MenuItem onClick={this.handleClose}>My profile</MenuItem>
                   </Link>
                   <Link to="/my-tickets">
-                    <MenuItem>My tickets</MenuItem>
+                    <MenuItem onClick={this.handleClose}>My tickets</MenuItem>
                   </Link>
                   <Link to="/change-password">
                     {" "}
-                    <MenuItem>Change passsword</MenuItem>
+                    <MenuItem onClick={this.handleClose}>Change passsword</MenuItem>
                   </Link>
                   <MenuItem
                     onClick={() => {
                       logout();
+                      this.handleClose()
                       toast.success("User Logged Out", {
                         position: "top-right",
                         autoClose: 2000,
