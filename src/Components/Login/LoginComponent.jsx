@@ -61,7 +61,8 @@ const LoginForm = props => {
         className="btn btn-outline-primary"
         // disabled={isSubmitting}
       >
-        {isSubmitting ? "WAIT PLIZ" : "CLICK ME"}
+        LOGIN
+        {/* {isSubmitting ? "WAIT PLIZ" : "CLICK ME"} */}
       </button>
     </form>
   );
