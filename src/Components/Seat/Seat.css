@@ -121,3 +121,6 @@ table
     border: 1px solid;
     text-align: left;
 }
+.seat.selected {
+    background-color: #898964; 
+}
