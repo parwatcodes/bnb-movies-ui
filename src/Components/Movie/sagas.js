@@ -7,7 +7,8 @@ import {
   FETCH_MOVIES_SUCCESS,
   FETCH_MOVIES_ERROR,
   FETCH_MOVIE_BY_ID,
-  FETCH_MOVIE_BY_ID_SUCCESS
+  FETCH_MOVIE_BY_ID_SUCCESS,
+  UPDATE_MOVIE_BY_ID
 } from "./constants";
 
 function* watcherFetchMoviesSaga() {
@@ -54,23 +55,27 @@ function* workerPostMovieSaga(payload) {
   }
 }
 
-// function* watcherFetchMovieByIDSaga() {
-//   yield takeLatest(FETCH_MOVIE_BY_ID, workerFetchMovieByIDSaga);
-// }
+function* watcherUpdateMovieByIDSaga() {
+  yield takeLatest(UPDATE_MOVIE_BY_ID, workerUpdateMovieByIDSaga);
+}
 
-// function* workerFetchMovieByIDSaga(payload) {
-//   let { movieID, type } = payload;
-//   try {
-//     const url = "http://localhost:3001/api/v1/movies";
+function* workerUpdateMovieByIDSaga(payload) {
+  let { movieID, data, type } = payload;
+  try {
+    const url = `http://localhost:3001/api/v1/movie/${movieID}`;
 
-//     const response = yield call(() => {
-//       return axios.post(url, data);
-//     });
+    const response = yield call(() => {
+      return axios.post(url, data);
+    });
 
-//     const resp = response.data;
-//   } catch (error) {}
-// }
+    const resp = response.data;
+  } catch (error) {}
+}
 
 export default function* rootSaga() {
-  yield all([fork(watcherFetchMoviesSaga), fork(watcherPostMovieSaga)]);
+  yield all([
+    fork(watcherFetchMoviesSaga),
+    fork(watcherPostMovieSaga),
+    fork(watcherUpdateMovieByIDSaga)
+  ]);
 }

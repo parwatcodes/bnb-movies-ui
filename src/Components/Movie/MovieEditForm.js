@@ -430,7 +430,7 @@ class MovieEditForm extends Component {
             })}
           </fieldset>
         </FormGroup> */}
-        <Button type="submit">Edit</Button>
+        <Button type="submit">Update</Button>
       </Form>
     );
   }

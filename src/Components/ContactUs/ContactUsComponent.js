@@ -33,11 +33,7 @@ class Contact extends Component {
                   BNB Movies
                 </td>
               </tr>
-              <tr>
-                <td style={{ color: "#c4a95f", paddingBottom: 15 }}>
-                  Director of Sales &amp; Marketing
-                </td>
-              </tr>
+
               <tr>
                 <td style={{ color: "#c4a95f" }}>
                   Phone:{" "}
@@ -50,7 +46,7 @@ class Contact extends Component {
                   <span
                     style={{ textDecoration: "none", color: "#1b1464" }}
                   >
-                    98000198900
+                    9868721004
                   </span>{" "}
                 </td>
               </tr>

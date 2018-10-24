@@ -1,4 +1,4 @@
-import { FETCH_MOVIES, ADD_MOVIE, FETCH_MOVIE_BY_ID } from "./constants";
+import { FETCH_MOVIES, ADD_MOVIE, FETCH_MOVIE_BY_ID, UPDATE_MOVIE_BY_ID } from "./constants";
 
 export function fetchMovies() {
   return {
@@ -18,4 +18,12 @@ export function fetchMovieByID(movieID) {
     type: FETCH_MOVIE_BY_ID,
     movieID
   };
+}
+
+export function updateMovieByID(movieID, data) {
+  return {
+    type: UPDATE_MOVIE_BY_ID,
+    movieID,
+    data,
+  }
 }

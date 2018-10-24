@@ -52,6 +52,12 @@ class MovieDetails extends Component {
               Edit Movie
             </Button>
           </Link>
+          &nbsp;&nbsp;
+          <Button variant="contained" color="secondary" type="button">
+            Delete Movie
+          </Button>
+          <br />
+          <br />
           <div className="row">
             <div className="col-md-8">
               <div className="embed-responsive embed-responsive-16by9">
@@ -72,7 +78,10 @@ class MovieDetails extends Component {
                 />
               </div>
               <div className="mar-t-15 mar-b-15">
-                <a className="ticket" href="/Home/GetTicketBookDetail?EventID=7308">
+                <a
+                  className="ticket"
+                  href="/Home/GetTicketBookDetail?EventID=7308"
+                >
                   <i className="exo exo-ticket" />
                 </a>
                 <a
@@ -90,40 +99,36 @@ class MovieDetails extends Component {
               <div className="movie-info">
                 <p>
                   <div className="row">
-                  <span className="col-md-5 col-xs-6">Releasing Date :</span>
-                  <span className="col-md-7 col-xs-6">
-                    {moment(release_date).format("dddd")},
-                    {moment(release_date).format("MMM Do YYYY")}
-                  </span>
+                    <span className="col-md-5 col-xs-6">Releasing Date :</span>
+                    <span className="col-md-7 col-xs-6">
+                      {moment(release_date).format("dddd")},
+                      {moment(release_date).format("MMM Do YYYY")}
+                    </span>
                   </div>
                 </p>
                 <p>
-                <div className="row">
-                  <span className="col-md-5 col-xs-6">Run Time :</span>
-                  <span className="col-md-7 col-xs-6">{run_time}</span>
+                  <div className="row">
+                    <span className="col-md-5 col-xs-6">Run Time :</span>
+                    <span className="col-md-7 col-xs-6">{run_time}</span>
                   </div>
-
                 </p>
                 <p>
-                <div className="row">
-                  <span className="col-md-5 col-xs-6">Director :</span>
-                  <span className="col-md-7 col-xs-6">{director}</span>
+                  <div className="row">
+                    <span className="col-md-5 col-xs-6">Director :</span>
+                    <span className="col-md-7 col-xs-6">{director}</span>
                   </div>
-
                 </p>
                 <p>
-                <div className="row">
-                  <span className="col-md-5 col-xs-6">Genre :</span>
-                  <span className="col-md-7 col-xs-6">{genre}</span>
+                  <div className="row">
+                    <span className="col-md-5 col-xs-6">Genre :</span>
+                    <span className="col-md-7 col-xs-6">{genre}</span>
                   </div>
-
                 </p>
                 <p>
-                <div className="row">
-                  <span className="col-md-5 col-xs-6">Cast :</span>
-                  <span className="col-md-7 col-xs-6">{cast}</span>
+                  <div className="row">
+                    <span className="col-md-5 col-xs-6">Cast :</span>
+                    <span className="col-md-7 col-xs-6">{cast}</span>
                   </div>
-
                 </p>
               </div>
             </div>

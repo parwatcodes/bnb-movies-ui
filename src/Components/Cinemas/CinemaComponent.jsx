@@ -71,12 +71,12 @@ class CinemaComponent extends Component {
                       </Link>
                       <Button
                         size="small"
-                        color="primary"
+                        color="secondary"
                         onClick={() => {
                           deleteCinema(cinema._id);
                         }}
                       >
-                        REMOVE CINEMA
+                        DELETE CINEMA
                       </Button>
                     </CardActions>
                   )}

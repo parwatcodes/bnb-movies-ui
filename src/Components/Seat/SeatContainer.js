@@ -14,9 +14,10 @@ class SeatMap extends Component {
   render() {
     return (
       <div
-      style={{
-        textAlign: "center"
-      }}>
+        style={{
+          textAlign: "center"
+        }}
+      >
         <div class="checkout">
           <div class="sinopsis">
             <button class="back">
@@ -40,13 +41,19 @@ class SeatMap extends Component {
           </div>
           <section>
             <ul class="legend">
-              <li>available</li>
-              <li>taken</li>
+              <li>Available</li>
+              <li>Taken</li>
             </ul>
-            <span>Select your seats</span>
+            <span
+              style={{
+                fontWeight: "bold"
+              }}
+            >
+              Select your seats
+            </span>
             <div class="seats">
               <div class="seat taken ">A1</div>
-              <div class="seat  aisle-right">A2</div>
+              <div class="seat  ">A2</div>
               <div class="seat  ">A3</div>
               <div class="seat  ">A4</div>
               <div class="seat  ">A5</div>
