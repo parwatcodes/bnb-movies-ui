@@ -23,7 +23,8 @@ class MovieForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selectedCinemas: {}
+      selectedCinemas: {},
+      checkedCinemas : []
     };
   }
 
@@ -37,31 +38,50 @@ class MovieForm extends Component {
     });
   };
 
-  handleCinemaCheck = (event, cineID) => {
-    let { name, value } = event.target;
-    this.setState(
-      {
-        selectedCinemas: {
-          ...this.state.selectedCinemas,
-          [cineID]: ["MOCK"]
-        }
-      },
-      () => {
-        console.log("state", this.state);
-      }
-    );
+  handleCinemaCheck = cineID => {
+    if(this.state.checkedCinemas.includes(cineID)) {
+      delete this.state.selectedCinemas[cineID];
+      const checkedCinemas = [...this.state.checkedCinemas];
+      const index = checkedCinemas.indexOf(cineID);
+      checkedCinemas.splice(index, 1);
+      this.setState({
+        checkedCinemas
+      });
+    }
+    else
+      this.setState({
+        checkedCinemas: [...this.state.checkedCinemas, cineID]
+      });
   };
 
-  handleShowCheck = (event, cineID, show) => {
-    debugger
-    let { name, value } = event;
-    console.log("ss", this.state, cineID);
-    this.setState({
-      selectedCinemas: {
-        // ...this.state.selectedCinemas,
-        [cineID]: [this.state.selectedCinemas[cineID], show]
+  handleShowCheck = (cineID, show) => {
+    if(this.state.selectedCinemas[cineID]) {
+      if(this.state.selectedCinemas[cineID].includes(show)){
+        const selectedShow = [...this.state.selectedCinemas[cineID]]
+        const index = selectedShow.indexOf(show);
+        selectedShow.splice(index, 1);
+        this.setState({
+          selectedCinemas: {
+            ...this.state.selectedCinemas,
+            [cineID]: [...selectedShow]
+          }
+        })
       }
-    });
+      else
+      this.setState({
+        selectedCinemas: {
+          ...this.state.selectedCinemas,
+          [cineID]: [...this.state.selectedCinemas[cineID], show]
+        }
+      });
+    }
+    else
+      this.setState({
+        selectedCinemas: {
+          ...this.state.selectedCinemas,
+          [cineID]: [show]
+        }
+      });
   };
 
   render() {
@@ -78,7 +98,9 @@ class MovieForm extends Component {
       handleReset,
       cinemas
     } = this.props;
-
+    const { checkedCinemas, selectedCinemas } = this.state;
+    console.log(selectedCinemas);
+    const showTimes = ['9 AM', '12 PM', '3 PM', '6 PM'];
     return (
       <Form className="p-5 width-50-center" onSubmit={handleSubmit}>
         <FormGroup>
@@ -235,11 +257,13 @@ class MovieForm extends Component {
             )}
         </FormGroup>
 
-        <FormGroup>
-          <Label>Please select cinemas</Label>
+        <FormGroup style={{ textAlign: 'left' }}>
+          <Label>Please select cinemas:</Label>
           <fieldset
             style={{
-              border: "3px solid"
+              border: "1px solid #d6d9dc",
+              padding: '13px',
+              textAlign: 'left'
             }}
           >
             {cinemas.map(cine => {
@@ -249,13 +273,27 @@ class MovieForm extends Component {
                   <Label check>
                     <Input
                       type="checkbox"
-                      onClick={event => {
-                        this.toggle();
-                        this.handleCinemaCheck(event, cineID);
+                      onClick={() => {
+                        this.handleCinemaCheck(cineID);
                       }}
                     />{" "}
-                    {cine.name} - {cineID}
-                    <Modal
+                    {cine.name} - {cineID} {
+                      checkedCinemas.includes(cineID) &&
+                        <div className='text-center'>
+                          { showTimes.map(showTime => {
+                            return <li className='list-inline-item' style={{ fontSize: '14px' }}>
+                                    <Input
+                                      type="checkbox"
+                                      onClick={() => {
+                                        this.handleShowCheck(cineID, showTime);
+                                      }}/>
+                                    {showTime} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                  </li>
+                            })
+                          }
+                        </div>
+                      }
+                    {/* <Modal
                       isOpen={this.state.modal}
                       toggle={this.toggle}
                       className={this.props.className}
@@ -322,7 +360,7 @@ class MovieForm extends Component {
                           Cancel
                         </Button>
                       </ModalFooter>
-                    </Modal>
+                    </Modal> */}
                   </Label>
                 </FormGroup>
               );
