@@ -12,7 +12,10 @@ import {
   ADD_CINEMA_FAILURE,
   DELETE_CINEMA,
   DELETE_CINEMA_SUCCESS,
-  DELETE_CINEMA_FAILURE
+  DELETE_CINEMA_FAILURE,
+  UPDATE_CINEMA_BY_ID,
+  UPDATE_CINEMA_BY_ID_SUCCESS,
+  UPDATE_CINEMA_BY_ID_FAILURE
 } from "./constants";
 
 function* watcherFetchCinemasSaga() {
@@ -55,13 +58,30 @@ function* workerPostCinemaSaga(payload) {
         draggable: true
       })
     );
-    history.push('/cinemas')
+    history.push("/cinemas");
     // yield put({ type: ADD_CINEMA_SUCCESS, data: resp.data });
   } catch (error) {
     console.log(error);
 
     console.log("​}catch -> error", error);
   }
+}
+
+function* watcherUpdateCinemaByIDSaga() {
+  yield takeLatest(UPDATE_CINEMA_BY_ID, workerUpdateCinemaByIDSaga);
+}
+
+function* workerUpdateCinemaByIDSaga({cinemaID, data}) {
+
+  try {
+    const url = `http://localhost:3001/api/v1/cinemas/${cinemaID}`;
+    const response = yield call(() => {
+      return axios.put(url, data);
+    });
+
+    const resp = response.data;
+
+  } catch (error) {}
 }
 
 function* watcherDeleteCinemaSaga() {
@@ -87,7 +107,7 @@ function* workerDeleteCinemaSaga(payload) {
         draggable: true
       })
     );
-    history.push('/cinemas')
+    history.push("/cinemas");
     // yield put({ type: DELETE_CINEMA_SUCCESS, data: cinemaID });
   } catch (error) {}
 }
@@ -96,6 +116,7 @@ export default function* rootSaga() {
   yield all([
     fork(watcherFetchCinemasSaga),
     fork(watcherPostCinemaSaga),
-    fork(watcherDeleteCinemaSaga)
+    fork(watcherDeleteCinemaSaga),
+    fork(watcherUpdateCinemaByIDSaga)
   ]);
 }

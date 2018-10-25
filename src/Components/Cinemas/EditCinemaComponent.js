@@ -4,7 +4,7 @@ import Select from "react-select";
 import { withFormik } from "formik";
 import { connect } from "react-redux";
 import * as Yup from "yup";
-import { addCinema } from "./actions";
+import { updateCinemaByID } from "./actions";
 
 class Thumb extends React.Component {
   state = {
@@ -190,12 +190,23 @@ const EnhancedForm = withFormik({
     seats: Yup.string().required("Please enter your seats")
   }),
 
-  handleSubmit: (values, { props: { addCinema }, setSubmitting }) => {
+  handleSubmit: (
+    values,
+    {
+      props: {
+        updateCinemaByID,
+        match: {
+          params: { cineID }
+        }
+      },
+      setSubmitting
+    }
+  ) => {
     let formData = new FormData();
     for (let key in values) {
       formData.append(key, values[key]);
     }
-    addCinema(formData);
+    updateCinemaByID(cineID, formData);
   }
 })(CinemaEditForm);
 
@@ -207,7 +218,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    // addCinema: data => dispatch(addCinema(data))
+    updateCinemaByID: (cineID, data) =>
+      dispatch(updateCinemaByID(cineID, data))
   };
 };
 
