@@ -270,14 +270,13 @@ class MovieForm extends Component {
               let cineID = cine._id;
               return (
                 <FormGroup check>
-                  <Label check>
                     <Input
                       type="checkbox"
                       onClick={() => {
                         this.handleCinemaCheck(cineID);
                       }}
                     />{" "}
-                    {cine.name} - {cineID} {
+                    {cine.name} {
                       checkedCinemas.includes(cineID) &&
                         <div className='text-center'>
                           { showTimes.map(showTime => {
@@ -361,7 +360,6 @@ class MovieForm extends Component {
                         </Button>
                       </ModalFooter>
                     </Modal> */}
-                  </Label>
                 </FormGroup>
               );
             })}
