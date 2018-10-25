@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import { connect } from "react-redux";
 import moment from "moment";
+import { deleteMovie } from "./actions";
 
 class MovieDetails extends Component {
   constructor(props) {
@@ -39,23 +40,35 @@ class MovieDetails extends Component {
         genre
       } = this.state.movie;
       const movieID = this.props.match.params.movieID;
+      const { deleteMovie } = this.props;
 
       return (
         <div className="p-5 width-50-center">
-          <Link
-            to={`/edit-movie/${movieID}`}
-            params={{
-              action: "edit"
-            }}
-          >
-            <Button variant="contained" color="primary" type="button">
-              Edit Movie
-            </Button>
-          </Link>
-          &nbsp;&nbsp;
-          <Button variant="contained" color="secondary" type="button">
-            Delete Movie
-          </Button>
+          {this.props.user.role === 1 && (
+            <div>
+              <Link
+                to={`/edit-movie/${movieID}`}
+                params={{
+                  action: "edit"
+                }}
+              >
+                <Button variant="contained" color="primary" type="button">
+                  Edit Movie
+                </Button>
+              </Link>
+              &nbsp;&nbsp;
+              <Button
+                variant="contained"
+                color="secondary"
+                type="button"
+                onClick={() => {
+                  deleteMovie(movieID);
+                }}
+              >
+                Delete Movie
+              </Button>
+            </div>
+          )}
           <br />
           <br />
           <div className="row">
@@ -148,12 +161,15 @@ class MovieDetails extends Component {
 
 const mapStateToProps = state => {
   return {
-    movies: state.movies.data
+    movies: state.movies.data,
+    user: state.user
   };
 };
 
 const mapDispatchToProps = dispatch => {
-  return {};
+  return {
+    deleteMovie: movieID => dispatch(deleteMovie(movieID))
+  };
 };
 
 export default connect(
