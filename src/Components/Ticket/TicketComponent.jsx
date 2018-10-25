@@ -6,6 +6,7 @@ class TicketComponent extends Component {
   }
 
   render() {
+    const { totalAmount, selectedSeats } = this.props;
     return (
       <div className="cardWrap">
         <div className="tcard cardLeft">
@@ -34,14 +35,14 @@ class TicketComponent extends Component {
           <div className="time" style={{
             float: "right"
           }}>
-            <h2>Rs. 1200</h2>
+            <h2>Rs.{totalAmount}</h2>
             <span>total price</span>
           </div>
         </div>
         <div className="tcard cardRight">
           <div className="eye" />
           <div className="number">
-            <h6>A1, A2, A3, A4</h6>
+            <h6>{selectedSeats.toString()}</h6>
             <span>seat</span>
           </div>
           <div className="barcode" />
