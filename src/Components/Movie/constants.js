@@ -15,3 +15,6 @@ export const UPDATE_MOVIE_BY_ID_SUCCESS =
   "BNB/Cinemas/UPDATE_MOVIE_BY_ID_SUCCESS";
 export const UPDATE_MOVIE_BY_ID_FAILURE =
   "BNB/Cinemas/UPDATE_MOVIE_BY_ID_FAILURE";
+
+  export const DELETE_MOVIE =
+  "BNB/Cinemas/DELETE_MOVIE";

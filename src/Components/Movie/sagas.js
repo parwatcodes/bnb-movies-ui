@@ -1,5 +1,7 @@
 import { call, all, fork, put, takeLatest } from "redux-saga/effects";
 import axios from "axios";
+import { ToastContainer, toast } from "react-toastify";
+import history from "../../history";
 
 import {
   ADD_MOVIE,
@@ -8,7 +10,8 @@ import {
   FETCH_MOVIES_ERROR,
   FETCH_MOVIE_BY_ID,
   FETCH_MOVIE_BY_ID_SUCCESS,
-  UPDATE_MOVIE_BY_ID
+  UPDATE_MOVIE_BY_ID,
+  DELETE_MOVIE
 } from "./constants";
 
 function* watcherFetchMoviesSaga() {
@@ -72,10 +75,39 @@ function* workerUpdateMovieByIDSaga(payload) {
   } catch (error) {}
 }
 
+function* watcherDeleteMovieSaga() {
+  yield takeLatest(DELETE_MOVIE, workerDeleteMovieSaga);
+}
+
+function* workerDeleteMovieSaga(payload) {
+  let { movieID } = payload;
+  try {
+    const url = `http://localhost:3001/api/v1/movies/${movieID}`;
+    const response = yield call(() => {
+      return axios.delete(url);
+    });
+
+    const resp = response.data;
+    yield put(
+      toast.success("Movie Deleted successfully", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true
+      })
+    );
+    history.push("/movies");
+    // yield put({ type: DELETE_MOVIE_SUCCESS, data: cinemaID });
+  } catch (error) {}
+}
+
 export default function* rootSaga() {
   yield all([
     fork(watcherFetchMoviesSaga),
     fork(watcherPostMovieSaga),
-    fork(watcherUpdateMovieByIDSaga)
+    fork(watcherUpdateMovieByIDSaga),
+    fork(watcherDeleteMovieSaga)
   ]);
 }
