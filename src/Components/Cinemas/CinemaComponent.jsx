@@ -8,10 +8,11 @@ import CardMedia from "@material-ui/core/CardMedia";
 import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import { withStyles } from "@material-ui/core/styles";
+import "./cinema.css";
 
 const styles = {
   card: {
-    maxWidth: 345
+  
   },
   media: {
     // ⚠️ object-fit is not supported by IE11.
@@ -21,23 +22,30 @@ const styles = {
 
 class CinemaComponent extends Component {
   render() {
-    const { classes, cinemas, loading, deleteCinema, user: { role } } = this.props;
+    const {
+      classes,
+      cinemas,
+      loading,
+      deleteCinema,
+      user: { role }
+    } = this.props;
     if (loading) {
       return <p>Loading...</p>;
     }
 
     return (
-      <div>
+      <div className="cinemaContainer">
         {cinemas.length
           ? cinemas.map((cinema, index) => (
               <div
                 key={index}
-                className="p-3 width-50-center"
+                className="p-3"
                 style={{
-                  display: "inline-block"
+                  width:"33%",
+                  float:"left",
                 }}
               >
-                <Card className={classes.card}>
+                <Card className="mainCard">
                   <CardActionArea>
                     <CardMedia
                       component="img"
@@ -51,10 +59,12 @@ class CinemaComponent extends Component {
                       <Typography gutterBottom variant="h5" component="h2">
                         {cinema.name}
                       </Typography>
-                      Seats:{" "}
-                      <Typography component="h3">{cinema.seats}</Typography>
-                      address:{" "}
+                      Address:{" "}
                       <Typography component="h3">{cinema.address}</Typography>
+                      <br />
+                      Phone:{" "}
+                      <Typography component="h3">{cinema.phone}</Typography>
+                      <br />
                       <Typography component="p">
                         Lizards are a widespread group of squamate reptiles,
                         with over 6,000 species, ranging across all continents

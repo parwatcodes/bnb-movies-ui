@@ -87,6 +87,7 @@ class NavHeader extends Component {
               component={Link}
               style={styles.tabs}
             />
+            <Tab label="Help" to="/help" component={Link} style={styles.tabs} />
             {!isAuthenticated && (
               <Tab
                 label="Register"
@@ -108,7 +109,9 @@ class NavHeader extends Component {
             {isAuthenticated && (
               <div>
                 <IconButton
-                  aria-owns={Boolean(this.state.anchorEl) ? "menu-appbar" : null}
+                  aria-owns={
+                    Boolean(this.state.anchorEl) ? "menu-appbar" : null
+                  }
                   aria-haspopup="true"
                   onClick={this.handleMenu}
                   color="inherit"
@@ -145,12 +148,14 @@ class NavHeader extends Component {
                   </Link>
                   <Link to="/change-password">
                     {" "}
-                    <MenuItem onClick={this.handleClose}>Change passsword</MenuItem>
+                    <MenuItem onClick={this.handleClose}>
+                      Change passsword
+                    </MenuItem>
                   </Link>
                   <MenuItem
                     onClick={() => {
                       logout();
-                      this.handleClose()
+                      this.handleClose();
                       toast.success("User Logged Out", {
                         position: "top-right",
                         autoClose: 2000,

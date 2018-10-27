@@ -74,20 +74,16 @@ class CinemaEditForm extends Component {
         <FormGroup>
           {/* <div className="col-xs-12 col-sm-4 col-md-4"> */}
           {!values.poster && (
-            <img className="img-responsive center" src={values.poster_link} />
+            <img className="img-responsive center" src={values.poster_link} height="350px" width="400px"/>
           )}
           {/* </div> */}
         </FormGroup>
         <Thumb file={values.poster} />
 
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center"
-          }}
-        >
-          Name:
-          <FormGroup>
+        <div>
+          <FormGroup className="row">
+          <label className="col-sm-2 col-form-label"> Name </label>
+          <div className="col-sm-10">
             <Input
               type="text"
               name="name"
@@ -100,13 +96,16 @@ class CinemaEditForm extends Component {
                 touched.name &&
                 "is-invalid"}`}
             />
+            </div>
             {errors.name &&
               touched.name && (
                 <div className="invalid-feedback">{errors.name}</div>
               )}
           </FormGroup>
         </div>
-        <FormGroup>
+        <FormGroup className="row">
+        <label className="col-sm-2 col-form-label"> Address </label>
+          <div className="col-sm-10">
           <Input
             type="textarea"
             name="address"
@@ -119,12 +118,15 @@ class CinemaEditForm extends Component {
               touched.address &&
               "is-invalid"}`}
           />
+          </div>
           {errors.address &&
             touched.address && (
               <div className="invalid-feedback">{errors.address}</div>
             )}
         </FormGroup>
-        <FormGroup>
+        <FormGroup className="row">
+        <label className="col-sm-2 col-form-label"> Phone </label>
+          <div className="col-sm-10">
           <Input
             type="number"
             name="phone"
@@ -137,12 +139,15 @@ class CinemaEditForm extends Component {
               touched.phone &&
               "is-invalid"}`}
           />
+          </div>
           {errors.phone &&
             touched.phone && (
               <div className="invalid-feedback">{errors.phone}</div>
             )}
         </FormGroup>
-        <FormGroup>
+        <FormGroup className="row">
+        <label className="col-sm-2 col-form-label"> Total Seats </label>
+          <div className="col-sm-10">
           <Input
             type="number"
             name="seats"
@@ -155,6 +160,7 @@ class CinemaEditForm extends Component {
               touched.seats &&
               "is-invalid"}`}
           />
+          </div>
           {errors.seats &&
             touched.seats && (
               <div className="invalid-feedback">{errors.seats}</div>

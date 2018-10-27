@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import Button from "@material-ui/core/Button";
 import CinemaComponent from "./CinemaComponent";
 import { addCinema, fetchCinemas, deleteCinema } from "./actions";
+import autoMergeLevel1 from "redux-persist/es/stateReconciler/autoMergeLevel1";
 
 class CinemaContainer extends Component {
   constructor(props) {
@@ -17,13 +18,20 @@ class CinemaContainer extends Component {
 
   render() {
     return (
-      <div className="p-5 width-50-center">
+      <div className="p-5 " style={{
+        width:"90%",
+        margin:"0 auto",
+      }}>
         {this.props.user.role === 1 && (
-          <Link to="/add-cinema">
-            <Button type="button" variant="contained" color="primary">
+          <div className="width-50-center">
+          <Link to="/add-cinema" className="center">
+            <Button type="button" variant="contained" color="primary" style={{ textAlign:"center",
+            
+              margin: "0 auto"}}>
               Add a cinema
             </Button>
           </Link>
+          </div>
         )}
         <CinemaComponent {...this.props} />
       </div>

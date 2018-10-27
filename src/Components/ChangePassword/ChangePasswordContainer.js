@@ -28,53 +28,68 @@ class ChangePassword extends Component {
       <div>
         <form className="p-5 width-50-center" onSubmit={handleSubmit}>
           <h1>Change password</h1>
-          <div className="form-group">
-            <input
-              name="currentPassword"
-              type="text"
-              className={`form-control ${errors.currentPassword &&
-                touched.currentPassword &&
-                "is-invalid"}`}
-              value={values.currentPassword}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              placeholder={"Current Password"}
-            />
+          <div className="form-group row">
+            <label className="col-sm-2 col-form-label">
+              {" "}
+              Current Password{" "}
+            </label>
+            <div className="col-sm-10">
+              <input
+                name="currentPassword"
+                type="text"
+                className={`form-control ${errors.currentPassword &&
+                  touched.currentPassword &&
+                  "is-invalid"}`}
+                value={values.currentPassword}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                placeholder={"Current Password"}
+              />
+            </div>
             {errors.currentPassword &&
               touched.currentPassword && (
                 <div className="invalid-feedback">{errors.currentPassword}</div>
               )}
           </div>
-          <div className="form-group">
-            <input
-              name="newPassword"
-              type="text"
-              className={`form-control ${errors.newPassword &&
-                touched.newPassword &&
-                "is-invalid"}`}
-              value={values.newPassword}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              placeholder={"New Password"}
-            />
+          <div className="form-group row">
+            <label className="col-sm-2 col-form-label"> New Password </label>
+            <div className="col-sm-10">
+              <input
+                name="newPassword"
+                type="text"
+                className={`form-control ${errors.newPassword &&
+                  touched.newPassword &&
+                  "is-invalid"}`}
+                value={values.newPassword}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                placeholder={"New Password"}
+              />
+            </div>
             {errors.newPassword &&
               touched.newPassword && (
                 <div className="invalid-feedback">{errors.newPassword}</div>
               )}
           </div>
 
-          <div className="form-group">
-            <input
-              name="confirmPassword"
-              type="text"
-              className={`form-control ${errors.confirmPassword &&
-                touched.confirmPassword &&
-                "is-invalid"}`}
-              value={values.confirmPassword}
-              onChange={handleChange}
-              placeholder={"confirmPassword"}
-              onBlur={handleBlur}
-            />
+          <div className="form-group row">
+            <label className="col-sm-2 col-form-label">
+              {" "}
+              Confirm Password{" "}
+            </label>
+            <div className="col-sm-10">
+              <input
+                name="confirmPassword"
+                type="text"
+                className={`form-control ${errors.confirmPassword &&
+                  touched.confirmPassword &&
+                  "is-invalid"}`}
+                value={values.confirmPassword}
+                onChange={handleChange}
+                placeholder={"confirmPassword"}
+                onBlur={handleBlur}
+              />
+            </div>
             {errors.confirmPassword &&
               touched.confirmPassword && (
                 <div className="invalid-feedback">{errors.confirmPassword}</div>
@@ -104,8 +119,8 @@ const EnhancedForm = withFormik({
   },
   validationSchema: Yup.object().shape({
     newPassword: Yup.string()
-    .min(6, 'Password has to be longer than 6 characters!')
-    .required('Password is required!')
+      .min(6, "Password has to be longer than 6 characters!")
+      .required("Password is required!")
   }),
 
   handleSubmit: (values, { props: { addCinema }, setSubmitting }) => {

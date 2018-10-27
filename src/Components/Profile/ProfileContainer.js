@@ -28,9 +28,12 @@ class Profile extends Component {
         <form className="p-5 width-50-center" onSubmit={handleSubmit}>
           <h1>Profile</h1>
 
-          <div className="form-group">
+          <div className="form-group row">
+          <label className="col-sm-2 col-form-label"> Name </label>
+          <div className="col-sm-10">
             <input
               name="name"
+              className="form-control"
               type="text"
               value={values.name}
               className={`form-control ${errors.name &&
@@ -41,14 +44,18 @@ class Profile extends Component {
               onBlur={handleBlur}
               placeholder={"Name"}
             />
+            </div>
             {errors.name &&
               touched.name && (
                 <div className="invalid-feedback">{errors.name}</div>
               )}
           </div>
-          <div className="form-group">
+          <div className="form-group row">
+          <label className="col-sm-2 col-form-label"> Email </label>
+          <div className="col-sm-10">
             <input
               name="email"
+              className="form-control"
               type="text"
               className={`form-control ${errors.email &&
                 touched.email &&
@@ -58,15 +65,19 @@ class Profile extends Component {
               onBlur={handleBlur}
               placeholder={"Email"}
             />
+            </div>
             {errors.email &&
               touched.email && (
                 <div className="invalid-feedback">{errors.email}</div>
               )}
           </div>
 
-          <div className="form-group">
+          <div className="form-group row">
+          <label className="col-sm-2 col-form-label"> Phone </label>
+          <div className="col-sm-10">
             <input
               name="phone"
+              className="form-control"
               type="number"
               className={`form-control ${errors.phone &&
                 touched.phone &&
@@ -76,15 +87,19 @@ class Profile extends Component {
               placeholder={"phone"}
               onBlur={handleBlur}
             />
+            </div>
             {errors.phone &&
               touched.phone && (
                 <div className="invalid-feedback">{errors.phone}</div>
               )}
           </div>
 
-          <div className="form-group">
+          <div className="form-group row">
+          <label className="col-sm-2 col-form-label"> Date of Birth </label>
+          <div className="col-sm-10">
             <input
               name="dob"
+              className="form-control"
               type="date"
               className={`form-control ${errors.dob &&
                 touched.dob &&
@@ -94,13 +109,16 @@ class Profile extends Component {
               onBlur={handleBlur}
               placeholder={"Date of birth"}
             />
+            </div>
             {errors.dob &&
               touched.dob && (
                 <div className="invalid-feedback">{errors.dob}</div>
               )}
           </div>
 
-          <div className="form-group">
+          <div className="form-group row">
+          <label className="col-sm-2 col-form-label"> Gender </label>
+          <div className="col-sm-10">
             <Select
               name="gender"
               placeholder={"Gender"}
@@ -116,6 +134,7 @@ class Profile extends Component {
                 setFieldValue("gender", event.value);
               }}
             />
+            </div>
           </div>
 
           <button

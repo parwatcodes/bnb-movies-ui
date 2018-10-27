@@ -166,13 +166,15 @@ class MovieEditForm extends Component {
         <FormGroup>
           {/* <div className="col-xs-12 col-sm-4 col-md-4"> */}
           {!values.poster && (
-            <img className="img-responsive center" src={values.poster_link} />
+            <img className="img-responsive center" src={values.poster_link} height="250px" width="200px"/>
           )}
           {/* </div> */}
         </FormGroup>
         <Thumb file={values.poster} />
 
-        <FormGroup>
+        <FormGroup className="row">
+        <label className="col-sm-2 col-form-label"> Name </label>
+          <div className="col-sm-10">
           <Input
             type="text"
             name="name"
@@ -185,12 +187,15 @@ class MovieEditForm extends Component {
               touched.name &&
               "is-invalid"}`}
           />
+          </div>
           {errors.name &&
             touched.name && (
               <div className="invalid-feedback">{errors.name}</div>
             )}
         </FormGroup>
-        <FormGroup>
+        <FormGroup className="row">
+        <label className="col-sm-2 col-form-label"> Description </label>
+          <div className="col-sm-10">
           <Input
             style={{
               height: "100px"
@@ -206,12 +211,15 @@ class MovieEditForm extends Component {
               touched.description &&
               "is-invalid"}`}
           />
+          </div>
           {errors.description &&
             touched.description && (
               <div className="invalid-feedback">{errors.description}</div>
             )}
         </FormGroup>
-        <FormGroup>
+        <FormGroup className="row">
+        <label className="col-sm-2 col-form-label"> Price </label>
+          <div className="col-sm-10">
           <Input
             type="number"
             name="price"
@@ -224,12 +232,15 @@ class MovieEditForm extends Component {
               touched.price &&
               "is-invalid"}`}
           />
+          </div>
           {errors.price &&
             touched.price && (
               <div className="invalid-feedback">{errors.price}</div>
             )}
         </FormGroup>
-        <FormGroup>
+        <FormGroup className="row">
+        <label className="col-sm-2 col-form-label"> Release Date </label>
+          <div className="col-sm-10">
           <Input
             type="date"
             name="date"
@@ -242,12 +253,15 @@ class MovieEditForm extends Component {
               touched.date &&
               "is-invalid"}`}
           />
+          </div>
           {errors.date &&
             touched.date && (
               <div className="invalid-feedback">{errors.date}</div>
             )}
         </FormGroup>
-        <FormGroup>
+        <FormGroup className="row">
+        <label className="col-sm-2 col-form-label"> Run time </label>
+          <div className="col-sm-10">
           <Input
             type="run_time"
             value={values.run_time}
@@ -260,12 +274,15 @@ class MovieEditForm extends Component {
               touched.run_time &&
               "is-invalid"}`}
           />
+          </div>
           {errors.run_time &&
             touched.run_time && (
               <div className="invalid-feedback">{errors.run_time}</div>
             )}
         </FormGroup>
-        <FormGroup>
+        <FormGroup className="row">
+        <label className="col-sm-2 col-form-label"> Director </label>
+          <div className="col-sm-10">
           <Input
             type="text"
             name="director"
@@ -278,12 +295,15 @@ class MovieEditForm extends Component {
               touched.director &&
               "is-invalid"}`}
           />
+          </div>
           {errors.director &&
             touched.director && (
               <div className="invalid-feedback">{errors.director}</div>
             )}
         </FormGroup>
-        <FormGroup>
+        <FormGroup className="row">
+        <label className="col-sm-2 col-form-label"> Cast </label>
+          <div className="col-sm-10">
           <Input
             type="textarea"
             name="cast"
@@ -296,12 +316,13 @@ class MovieEditForm extends Component {
               touched.cast &&
               "is-invalid"}`}
           />
+          </div>
           {errors.cast &&
             touched.cast && (
               <div className="invalid-feedback">{errors.cast}</div>
             )}
         </FormGroup>
-        <FormGroup>
+        {/* <FormGroup>
           <Input
             type="file"
             name="poster"
@@ -317,8 +338,10 @@ class MovieEditForm extends Component {
             touched.poster && (
               <div className="invalid-feedback">{errors.poster}</div>
             )}
-        </FormGroup>
-        <FormGroup>
+        </FormGroup> */}
+        <FormGroup className="row">
+        <label className="col-sm-2 col-form-label"> Trailer link </label>
+          <div className="col-sm-10">
           <Input
             type="url"
             name="trailer_link"
@@ -331,6 +354,7 @@ class MovieEditForm extends Component {
               touched.trailer_link &&
               "is-invalid"}`}
           />
+          </div>
           {errors.trailer_link &&
             touched.trailer_link && (
               <div className="invalid-feedback">{errors.trailer_link}</div>

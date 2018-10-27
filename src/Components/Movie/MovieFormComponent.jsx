@@ -292,74 +292,6 @@ class MovieForm extends Component {
                           }
                         </div>
                       }
-                    {/* <Modal
-                      isOpen={this.state.modal}
-                      toggle={this.toggle}
-                      className={this.props.className}
-                    >
-                      <ModalHeader toggle={this.toggle}>
-                        Please select show timings for{" "}
-                        <b>
-                          {cine.name} - {cineID}
-                        </b>
-                      </ModalHeader>
-                      <ModalBody>
-                        {cineID}
-                        {console.log("value of cineid >>> ", cineID)}
-                        <FormGroup check>
-                          <Label check>
-                            <Input
-                              type="checkbox"
-                              onClick={event => {
-                                this.handleShowCheck(event, cineID, "9 AM");
-                              }}
-                            />{" "}
-                            9 AM
-                          </Label>
-                        </FormGroup>{" "}
-                        <FormGroup check>
-                          <Label check>
-                            <Input
-                              type="checkbox"
-                              onClick={event => {
-                                this.handleShowCheck(event, cineID, "12 PM");
-                              }}
-                            />{" "}
-                            12 PM
-                          </Label>
-                        </FormGroup>{" "}
-                        <FormGroup check>
-                          <Label check>
-                            <Input
-                              type="checkbox"
-                              onClick={event => {
-                                this.handleShowCheck(event, cineID, "3 PM");
-                              }}
-                            />{" "}
-                            3 PM
-                          </Label>
-                        </FormGroup>{" "}
-                        <FormGroup check>
-                          <Label check>
-                            <Input
-                              type="checkbox"
-                              onClick={event => {
-                                this.handleShowCheck(event, cineID, "6 PM");
-                              }}
-                            />{" "}
-                            6 PM
-                          </Label>
-                        </FormGroup>
-                      </ModalBody>
-                      <ModalFooter>
-                        <Button color="primary" onClick={this.toggle}>
-                          OK
-                        </Button>{" "}
-                        <Button color="secondary" onClick={this.toggle}>
-                          Cancel
-                        </Button>
-                      </ModalFooter>
-                    </Modal> */}
                 </FormGroup>
               );
             })}
@@ -392,12 +324,12 @@ const EnhancedForm = withFormik({
     // gender: Yup.string().required("Please enter your gender")
   }),
 
-  handleSubmit: (values, { props: { addMovie }, setSubmitting }) => {
-    let formData = new FormData();
-    for (let key in values) {
-      formData.append(key, values[key]);
-    }
-    addMovie(formData);
+  handleSubmit: (values, { props: { addMovie } }, state) => {
+    // let formData = new FormData();
+    // for (let key in values) {
+    //   formData.append(key, values[key]);
+    // }
+    // addMovie(formData);
   }
 })(MovieForm);
 

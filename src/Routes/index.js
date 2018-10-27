@@ -17,7 +17,8 @@ import BillComponent from "../Components/Bill/BillComponent";
 import MovieEditForm from "../Components/Movie/MovieEditForm";
 import EditCinemaForm from "../Components/Cinemas/EditCinemaComponent";
 import TicketContainer from "../Components/Ticket/TicketContainer";
-import Contact from "../Components/ContactUs/ContactUsComponent"
+import Contact from "../Components/ContactUs/ContactUsComponent";
+import Help from "../Components/Help/HelpComponent";
 
 const checkAuth = () => {
   const token = localStorage.getItem("jwtToken");
@@ -76,6 +77,7 @@ export default () => (
     <AdminRoute path="/edit-cinema/:cineID" component={EditCinemaForm} />
     <AuthRoute path="/my-tickets" component={TicketContainer} />
     <Route path="/contact" component={Contact} />
+    <Route path="/help" component={Help}/>
     <Route component={NotFound} />
   </Switch>
 );
