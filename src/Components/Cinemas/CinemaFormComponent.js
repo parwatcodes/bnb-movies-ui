@@ -122,7 +122,7 @@ class CinemaForm extends Component {
               <div className="invalid-feedback">{errors.phone}</div>
             )}
         </FormGroup>
-        <FormGroup>
+        {/* <FormGroup>
           <Input
             type="number"
             name="seats"
@@ -138,7 +138,7 @@ class CinemaForm extends Component {
             touched.seats && (
               <div className="invalid-feedback">{errors.seats}</div>
             )}
-        </FormGroup>
+        </FormGroup> */}
         <FormGroup>
           <Input
             type="file"

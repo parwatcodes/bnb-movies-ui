@@ -61,9 +61,20 @@ function* workerPostCinemaSaga(payload) {
     history.push("/cinemas");
     // yield put({ type: ADD_CINEMA_SUCCESS, data: resp.data });
   } catch (error) {
-    console.log(error);
-
-    console.log("​}catch -> error", error);
+    console.log(error.response);
+    yield put(
+      toast.error(
+        error.response.data.message || "Please provide all Input fields",
+        {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true
+        }
+      )
+    );
   }
 }
 
@@ -71,8 +82,7 @@ function* watcherUpdateCinemaByIDSaga() {
   yield takeLatest(UPDATE_CINEMA_BY_ID, workerUpdateCinemaByIDSaga);
 }
 
-function* workerUpdateCinemaByIDSaga({cinemaID, data}) {
-
+function* workerUpdateCinemaByIDSaga({ cinemaID, data }) {
   try {
     const url = `http://localhost:3001/api/v1/cinemas/${cinemaID}`;
     const response = yield call(() => {
@@ -80,7 +90,6 @@ function* workerUpdateCinemaByIDSaga({cinemaID, data}) {
     });
 
     const resp = response.data;
-
   } catch (error) {}
 }
 

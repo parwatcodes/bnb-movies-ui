@@ -10,7 +10,7 @@ class ShowDetails extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      cinema: '',
+      cinema: "",
       movie: {}
     };
   }
@@ -42,6 +42,7 @@ class ShowDetails extends Component {
           run_time,
           genre
         } = this.state.movie;
+        console.log("====", this.state.movie && this.state.movie.cinemas);
         return (
           <div>
             <div
@@ -70,56 +71,49 @@ class ShowDetails extends Component {
                         width="260px"
                       />
                     </div>
-                    <div class="col-8 show-movies" id="showDateTimeDivId">
-                      <div class="show-movies">
-                        <div class="show-movie clearfix">
-                          <div className="row">
-                            <div class="col-4">
-                              <h2 class="show-hall-name">QFX Civil Mall</h2>
-                            </div>
-                            <div class="col-8">
-                              <div class="show-times pad-sm-l-15">
-                                <Link
-                                  className="time-mark time-mark-available"
-                                  to="/getMovieDetails/:movieID/:cinemaID"
-                                >
-                                  <span class=" time">08:45</span>
-                                  <span class="hour">Hrs</span>
-                                </Link>
-                                <a
-                                  class="time-mark time-mark-available"
-                                  href="/ShoppingCart/Index?ShowID=121417&amp;RatingDescription=PG&amp;RunTime=1 Hr43 mins&amp;ShowCategory=2D&amp;ShowDate=10/21/2018 11:00:00 AM&amp;TheatreName=QFX Civil Mall&amp;EventName=Jai Bhole&amp;occupancy=Available"
-                                >
-                                  <span class=" time">11:00</span>
-                                  <span class="hour">Hrs</span>
-                                </a>
-                                <a
-                                  class="time-mark time-mark-available"
-                                  href="/ShoppingCart/Index?ShowID=121414&amp;RatingDescription=PG&amp;RunTime=1 Hr43 mins&amp;ShowCategory=2D&amp;ShowDate=10/21/2018 2:30:00 PM&amp;TheatreName=QFX Civil Mall&amp;EventName=Jai Bhole&amp;occupancy=Available"
-                                >
-                                  <span class=" time">14:30</span>
-                                  <span class="hour">Hrs</span>
-                                </a>
-                                <a
-                                  class="time-mark time-mark-available"
-                                  href="/ShoppingCart/Index?ShowID=121406&amp;RatingDescription=PG&amp;RunTime=1 Hr43 mins&amp;ShowCategory=2D&amp;ShowDate=10/21/2018 5:15:00 PM&amp;TheatreName=QFX Civil Mall&amp;EventName=Jai Bhole&amp;occupancy=Available"
-                                >
-                                  <span class=" time">17:15</span>
-                                  <span class="hour">Hrs</span>
-                                </a>
-                                <a
-                                  class="time-mark time-mark-available"
-                                  href="/ShoppingCart/Index?ShowID=121375&amp;RatingDescription=PG&amp;RunTime=1 Hr43 mins&amp;ShowCategory=2D&amp;ShowDate=10/21/2018 8:15:00 PM&amp;TheatreName=QFX Civil Mall&amp;EventName=Jai Bhole&amp;occupancy=Available"
-                                >
-                                  <span class=" time">20:15</span>
-                                  <span class="hour">Hrs</span>
-                                </a>
+                    {this.state.movie &&
+                      this.state.movie.cinemas &&
+                      this.state.movie.cinemas.map((cine, index) => {
+                        return Object.keys(cine).map(cineID => {
+                          return (
+                            <div
+                              class="col-8 show-movies"
+                              id="showDateTimeDivId"
+                            >
+                              <div class="show-movies">
+                                <div class="show-movie clearfix">
+                                  <div className="row">
+                                    <div class="col-4">
+                                      <h2 class="show-hall-name">
+                                        {
+                                          this.props.cinemas.find(
+                                            cine => cine._id == cineID
+                                          ).name
+                                        }
+                                      </h2>
+                                    </div>
+                                    {cine[cineID].map(sh => {
+                                      return (
+                                        <div class="col-8">
+                                          <div class="show-times pad-sm-l-15">
+                                            <Link
+                                              className="time-mark time-mark-available"
+                                              to={`/getMovieDetails/${movieID}/${cineID}`}
+                                            >
+                                              <span class=" time">{sh}</span>
+                                              <span class="hour">Hrs</span>
+                                            </Link>
+                                          </div>
+                                        </div>
+                                      );
+                                    })}
+                                  </div>
+                                </div>
                               </div>
                             </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+                          );
+                        });
+                      })}
                   </div>
                 </div>
               </div>
