@@ -71,19 +71,16 @@ class ShowDetails extends Component {
                         width="260px"
                       />
                     </div>
-                    {this.state.movie &&
-                      this.state.movie.cinemas &&
-                      this.state.movie.cinemas.map((cine, index) => {
-                        return Object.keys(cine).map(cineID => {
-                          return (
-                            <div
-                              class="col-8 show-movies"
-                              id="showDateTimeDivId"
-                            >
+                    <div class="col-8 show-movies" id="showDateTimeDivId">
+                      {this.state.movie &&
+                        this.state.movie.cinemas &&
+                        this.state.movie.cinemas.map((cine, index) => {
+                          return Object.keys(cine).map(cineID => {
+                            return (
                               <div class="show-movies">
                                 <div class="show-movie clearfix">
                                   <div className="row">
-                                    <div class="col-4">
+                                    <div class="">
                                       <h2 class="show-hall-name">
                                         {
                                           this.props.cinemas.find(
@@ -94,7 +91,7 @@ class ShowDetails extends Component {
                                     </div>
                                     {cine[cineID].map(sh => {
                                       return (
-                                        <div class="col-8">
+                                        <div class="">
                                           <div class="show-times pad-sm-l-15">
                                             <Link
                                               className="time-mark time-mark-available"
@@ -110,10 +107,10 @@ class ShowDetails extends Component {
                                   </div>
                                 </div>
                               </div>
-                            </div>
-                          );
-                        });
-                      })}
+                            );
+                          });
+                        })}
+                    </div>
                   </div>
                 </div>
               </div>
