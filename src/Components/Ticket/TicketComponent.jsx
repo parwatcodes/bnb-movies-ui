@@ -41,8 +41,10 @@ class TicketComponent extends Component {
         </div>
         <div className="tcard cardRight">
           <div className="eye" />
-          <div className="number">
-            <h6>{selectedSeats.toString()}</h6>
+          <div className="number" style={{}}>
+            <h6 style={{
+              fontSize:"11px",position:"relative"
+             }}>{selectedSeats.toString()}</h6>
             <span>seat</span>
           </div>
           <div className="barcode" />

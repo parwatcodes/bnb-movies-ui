@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import moment from "moment";
 
 import "./Show.css";
 
@@ -42,7 +43,6 @@ class ShowDetails extends Component {
           run_time,
           genre
         } = this.state.movie;
-        console.log("====", this.state.movie && this.state.movie.cinemas);
         return (
           <div>
             <div
@@ -95,7 +95,12 @@ class ShowDetails extends Component {
                                           <div class="show-times pad-sm-l-15">
                                             <Link
                                               className="time-mark time-mark-available"
-                                              to={`/getMovieDetails/${movieID}/${cineID}`}
+                                              to={{
+                                                pathname: `/getMovieDetails/${movieID}/${cineID}`,
+                                                state: {
+                                                  show_time: sh
+                                                }
+                                              }}
                                             >
                                               <span class=" time">{sh}</span>
                                               <span class="hour">Hrs</span>

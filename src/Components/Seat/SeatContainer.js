@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Button from "@material-ui/core/Button";
 import { withFormik } from "formik";
 import { connect } from "react-redux";
-import { Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import TicketComponent from "../Ticket/TicketComponent";
 import * as Yup from "yup";
 import "./Seat.css";
@@ -12,56 +12,123 @@ class SeatMap extends Component {
     super();
     this.state = {
       selectedSeats: [],
-      totalAmount  : 100,
-      showModal    : false
+      totalAmount: 100,
+      showModal: false,
+      movie: {},
+      cinema: {}
     };
   }
 
-  toggleSeatSelect = (seatNumber) => {
-    if(this.state.selectedSeats.includes(seatNumber)) {
+  toggleSeatSelect = seatNumber => {
+    if (this.state.selectedSeats.includes(seatNumber)) {
       const selectedSeats = [...this.state.selectedSeats];
       const index = selectedSeats.indexOf(seatNumber);
       selectedSeats.splice(index, 1);
-      this.setState({ 
-        selectedSeats 
+      this.setState({
+        selectedSeats
       });
-    }
-    else
-      this.setState({ 
-        selectedSeats: [...this.state.selectedSeats, seatNumber] 
+    } else
+      this.setState({
+        selectedSeats: [...this.state.selectedSeats, seatNumber]
       });
-  }
+  };
 
   showModal = () => {
     this.setState({ showModal: true });
-  }
+  };
 
   hideModal = () => {
     this.setState({ showModal: false });
-  }
+  };
 
   print = () => {
-    console.log('Print');
-    var content = document.getElementById('ticket');
-    var pri = document.getElementById('ifmcontentstoprint').contentWindow;
+    console.log("Print");
+    var content = document.getElementById("ticket");
+    var pri = document.getElementById("ifmcontentstoprint").contentWindow;
     pri.document.open();
     pri.document.write(content.innerHTML);
     pri.document.close();
     pri.focus();
     pri.print();
+  };
+
+  componentDidMount() {
+    const movieID = this.props.match.params.movieID;
+    const cinemaID = this.props.match.params.cinemaID;
+
+    let movie = this.props.movies.find(mov => mov._id === movieID);
+    let cinema = this.props.cinemas.find(cine => cine._id === cinemaID);
+    this.setState(
+      {
+        movie,
+        cinema
+      },
+      () => {
+        console.log(this.state);
+      }
+    );
   }
 
   render() {
     const { selectedSeats, totalAmount, showModal } = this.state;
-    const seatNumbers = ['A1', 'A2', 'A3', 'A4', 'A5', 'A6', 'A7', 'A8', 'A9', 'B1', 'B2', 'B3', 'B4', 'B5', 'B6', 'B7', 'B8', 'B9', 'C1', 'C2', 'C3', 'C4', 'C5', 'C6', 'C7', 'C8', 'C9'];
+    const seatNumbers = [
+      "A1",
+      "A2",
+      "A3",
+      "A4",
+      "A5",
+      "A6",
+      "A7",
+      "A8",
+      "A9",
+      "B1",
+      "B2",
+      "B3",
+      "B4",
+      "B5",
+      "B6",
+      "B7",
+      "B8",
+      "B9",
+      "C1",
+      "C2",
+      "C3",
+      "C4",
+      "C5",
+      "C6",
+      "C7",
+      "C8",
+      "C9"
+    ];
     const seatPlacement = seatNumbers.map(seatNumber => {
-      return <div key={seatNumber} 
-                  className={selectedSeats.includes(seatNumber)? 'seat selected' : 'seat'} 
-                  onClick={() => this.toggleSeatSelect(seatNumber)}>
-                  {seatNumber}
-             </div>
+      return (
+        <div
+          key={seatNumber}
+          className={
+            selectedSeats.includes(seatNumber) ? "seat selected" : "seat"
+          }
+          onClick={() => this.toggleSeatSelect(seatNumber)}
+        >
+          {seatNumber}
+        </div>
+      );
     });
-    const selectedSeatsDetail = <table class="Displaytable">
+
+    let show_time =
+      this.props &&
+      this.props.location &&
+      this.props.location.state &&
+      this.props.location.state.show_time;
+
+    const movieID = this.props.match.params.movieID;
+    const cinemaID = this.props.match.params.cinemaID;
+
+    let {
+      user: { email, name, phone }
+    } = this.props;
+
+    const selectedSeatsDetail = (
+      <table class="Displaytable">
         <tr>
           <th>Name</th>
           <th>Number of Seats</th>
@@ -70,7 +137,7 @@ class SeatMap extends Component {
         <tr key={selectedSeats.length}>
           <td>
             <textarea id="nameDisplay" disabled>
-              Ram
+              {name}
             </textarea>
           </td>
           <td>
@@ -80,11 +147,15 @@ class SeatMap extends Component {
           </td>
           <td>
             <textarea id="seatsDisplay" disabled>
-              {selectedSeats.length > 0 ? selectedSeats.toString() : 'No seat selected'}
+              {selectedSeats.length > 0
+                ? selectedSeats.toString()
+                : "No seat selected"}
             </textarea>
           </td>
         </tr>
       </table>
+    );
+
     return (
       <div
         style={{
@@ -98,17 +169,18 @@ class SeatMap extends Component {
             </button>
             <img
               class="cover"
-              src="https://image.tmdb.org/t/p/w300/gfJGlDaHuWimErCr5Ql0I8x9QSy.jpg"
-              alt='movie'
+              src={this.state.movie.poster_link}
+              height="300px"
+              width="450px"
+              alt="movie"
               style={{
                 backgroundImage:
                   "url(https://image.tmdb.org/t/p/w300//gfJGlDaHuWimErCr5Ql0I8x9QSy.jpg)"
               }}
             />
-            <h3>Wonder Woman</h3>
+            <h3>{this.state.movie.name}</h3>
             <p>
-              An Amazon princess comes to the world of Man to become the
-              greatest of the female superheroes.
+              {this.state.movie.description}
             </p>
             <span>Wed, 28 Jun </span>
             <small>16:00 (2h 15m)</small>
@@ -125,96 +197,13 @@ class SeatMap extends Component {
             >
               Select your seats
             </span>
-            <div class="seats">
-              {
-                seatPlacement
-              }
-              {/* <div class="seat taken ">A1</div>
-              <div class="seat  aisle-right">A2</div>
-              <div class="seat  ">A3</div>
-              <div class="seat  ">A4</div>
-              <div class="seat  ">A5</div>
-              <div class="seat  ">A6</div>
-              <div class="seat taken ">A7</div>
-              <div class="seat taken aisle-left">A8</div>
-              <div class="seat  ">A9</div>
-              <div class="seat  ">B1</div>
-              <div class="seat  aisle-right">B2</div>
-              <div class="seat  ">B3</div>
-              <div class="seat taken ">B4</div>
-              <div class="seat  ">B5</div>
-              <div class="seat taken ">B6</div>
-              <div class="seat  ">B7</div>
-              <div class="seat  aisle-left">B8</div>
-              <div class="seat  ">B9</div>
-              <div class="seat taken ">C1</div>
-              <div class="seat  aisle-right">C2</div>
-              <div class="seat  ">C3</div>
-              <div class="seat taken ">C4</div>
-              <div class="seat  ">C5</div>
-              <div class="seat  ">C6</div>
-              <div class="seat taken ">C7</div>
-              <div class="seat  aisle-left">C8</div>
-              <div class="seat  ">C9</div>
-              <div class="seat  ">D1</div>
-              <div class="seat taken aisle-right">D2</div>
-              <div class="seat  ">D3</div>
-              <div class="seat taken ">D4</div>
-              <div class="seat  ">D5</div>
-              <div class="seat  ">D6</div>
-              <div class="seat  ">D7</div>
-              <div class="seat  aisle-left">D8</div>
-              <div class="seat taken ">D9</div>
-              <div class="seat taken ">E1</div>
-              <div class="seat aisle-right selected">E2</div>
-              <div class="seat  ">E3</div>
-              <div class="seat  ">E4</div>
-              <div class="seat  ">E5</div>
-              <div class="seat  ">E6</div>
-              <div class="seat taken ">E7</div>
-              <div class="seat  aisle-left">E8</div>
-              <div class="seat  ">E9</div>
-              <div class="seat  ">F1</div>
-              <div class="seat aisle-right selected">F2</div>
-              <div class="seat  ">F3</div>
-              <div class="seat taken ">F4</div>
-              <div class="seat taken ">F5</div>
-              <div class="seat  ">F6</div>
-              <div class="seat  ">F7</div>
-              <div class="seat  aisle-left">F8</div>
-              <div class="seat  ">F9</div>
-              <div class="seat taken ">G1</div>
-              <div class="seat aisle-right selected">G2</div>
-              <div class="seat taken ">G3</div>
-              <div class="seat  ">G4</div>
-              <div class="seat  ">G5</div>
-              <div class="seat  ">G6</div>
-              <div class="seat taken ">G7</div>
-              <div class="seat  aisle-left">G8</div>
-              <div class="seat  ">G9</div>
-              <div class="seat taken ">H1</div>
-              <div class="seat aisle-right selected">H2</div>
-              <div class="seat  ">H3</div>
-              <div class="seat taken ">H4</div>
-              <div class="seat  ">H5</div>
-              <div class="seat  ">H6</div>
-              <div class="seat  ">H7</div>
-              <div class="seat taken aisle-left">H8</div>
-              <div class="seat  ">H9</div>
-              <div class="seat taken aisle-top">I1</div>
-              <div class="seat  aisle-top">I2</div>
-              <div class="seat  aisle-top">I3</div>
-              <div class="seat  aisle-top">I4</div>
-              <div class="seat  aisle-top">I5</div>
-              <div class="seat taken aisle-top">I6</div> */}
-            </div>
+            <div class="seats">{seatPlacement}</div>
             <div class="screen">screen</div>
             <br />
+            Cinema: {this.state.cinema.name} &nbsp; &nbsp; Show: {show_time}
             <br />
             <div class="displayerBoxes">
-              <center>
-                {selectedSeatsDetail}
-              </center>
+              <center>{selectedSeatsDetail}</center>
             </div>
             <div
               style={{
@@ -222,41 +211,44 @@ class SeatMap extends Component {
               }}
             >
               <small>Total Paying Amount: </small>
-              <span>Rs.{totalAmount * selectedSeats.length}</span>
+              <span>
+                Rs.
+                {totalAmount * selectedSeats.length}
+              </span>
               &nbsp;&nbsp;&nbsp;
               <Modal isOpen={showModal} size="lg">
                 <ModalHeader toggle={this.hideModal}>CHECKOUT</ModalHeader>
                 <iframe
-                  title='ticket' 
-                  id="ifmcontentstoprint" style={{
-                  height: '0px',
-                  width: '0px',
-                  position: 'absolute'
-                }}></iframe> 
-                <ModalBody id='ticket'>
-                    <TicketComponent
+                  title="ticket"
+                  id="ifmcontentstoprint"
+                  style={{
+                    height: "0px",
+                    width: "0px",
+                    position: "absolute"
+                  }}
+                />
+                <ModalBody id="ticket">
+                  <TicketComponent
                     totalAmount={totalAmount * selectedSeats.length}
-                    selectedSeats={selectedSeats}/>
+                    selectedSeats={selectedSeats}
+                  />
                 </ModalBody>
                 <ModalFooter>
-                  <Button 
-                    color="secondary" 
-                    onClick={this.hideModal}>
+                  <Button color="secondary" onClick={this.hideModal}>
                     Cancel
                   </Button>
-                  <Button 
-                    color="primary"
-                    onClick={this.print}>
+                  <Button color="primary" onClick={this.print}>
                     Print
                   </Button>
-                 </ModalFooter>
+                </ModalFooter>
               </Modal>
-              <Button 
-                variant="contained" 
-                color="primary" 
-                type="button" 
+              <Button
+                variant="contained"
+                color="primary"
+                type="button"
                 onClick={this.showModal}
-                disabled={selectedSeats.length < 1} >
+                disabled={selectedSeats.length < 1}
+              >
                 CHECKOUT
               </Button>
               <div class="loader" />
@@ -300,6 +292,8 @@ const EnhancedForm = withFormik({
 
 const mapStateToProps = state => {
   return {
+    user: state.user,
+    movies: state.movies.data,
     cinemas: state.cinemas.data
   };
 };
