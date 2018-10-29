@@ -179,9 +179,7 @@ class SeatMap extends Component {
               }}
             />
             <h3>{this.state.movie.name}</h3>
-            <p>
-              {this.state.movie.description}
-            </p>
+            <p>{this.state.movie.description}</p>
             <span>Wed, 28 Jun </span>
             <small>16:00 (2h 15m)</small>
           </div>
@@ -231,6 +229,12 @@ class SeatMap extends Component {
                   <TicketComponent
                     totalAmount={totalAmount * selectedSeats.length}
                     selectedSeats={selectedSeats}
+                    data={{
+                      name: this.props.user.name,
+                      movie_name: this.state.movie.name,
+                      cinema_name: this.state.cinema.name,
+                      show_time,
+                    }}
                   />
                 </ModalBody>
                 <ModalFooter>

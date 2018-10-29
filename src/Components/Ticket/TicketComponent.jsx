@@ -6,22 +6,31 @@ class TicketComponent extends Component {
   }
 
   render() {
-    const { totalAmount, selectedSeats } = this.props;
+    const {
+      totalAmount,
+      selectedSeats,
+      data: { name, movie_name, cinema_name, show_time }
+    } = this.props;
     return (
       <div className="cardWrap">
         <div className="tcard cardLeft">
-          <h1>
-            QFX Labim
-          </h1>
+          <h1>{cinema_name}</h1>
           <div className="title">
-            <h2>Venom <span style={{
-              float: "right",
-              color: "black"
-            }}>Invoice no: 190826</span></h2>
+            <h2>
+              {movie_name}{" "}
+              <span
+                style={{
+                  float: "right",
+                  color: "black"
+                }}
+              >
+                Invoice no: 190826
+              </span>
+            </h2>
             <span>movie</span>
           </div>
           <div className="name">
-            <h2>Nabin Bhandari</h2>
+            <h2>{name}</h2>
             <span>name</span>
           </div>
           <div className="seat">
@@ -29,22 +38,33 @@ class TicketComponent extends Component {
             <span>date</span>
           </div>
           <div className="time">
-            <h2>12:00 PM</h2>
+            <h2>{show_time}</h2>
             <span>time</span>
           </div>
-          <div className="time" style={{
-            float: "right"
-          }}>
-            <h2>Rs.{totalAmount}</h2>
+          <div
+            className="time"
+            style={{
+              float: "right"
+            }}
+          >
+            <h2>
+              Rs.
+              {totalAmount}
+            </h2>
             <span>total price</span>
           </div>
         </div>
         <div className="tcard cardRight">
           <div className="eye" />
           <div className="number" style={{}}>
-            <h6 style={{
-              fontSize:"11px",position:"relative"
-             }}>{selectedSeats.toString()}</h6>
+            <h6
+              style={{
+                fontSize: "11px",
+                position: "relative"
+              }}
+            >
+              {selectedSeats.toString()}
+            </h6>
             <span>seat</span>
           </div>
           <div className="barcode" />

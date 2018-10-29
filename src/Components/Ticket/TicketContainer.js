@@ -11,7 +11,7 @@ class TicketContainer extends Component {
   render() {
     return (
       <div>
-        <TicketComponent />
+        <TicketComponent {...this.props}/>
       </div>
     );
   }
