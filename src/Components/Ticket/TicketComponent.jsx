@@ -24,7 +24,7 @@ class TicketComponent extends Component {
                   color: "black"
                 }}
               >
-                Invoice no: 190826
+                {/* Invoice no: 190826 */}
               </span>
             </h2>
             <span>movie</span>

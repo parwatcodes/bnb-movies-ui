@@ -6,7 +6,7 @@ import { Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import TicketComponent from "../Ticket/TicketComponent";
 import * as Yup from "yup";
 import "./Seat.css";
-
+import { addTicket, fetchTickets } from "./actions";
 class SeatMap extends Component {
   constructor() {
     super();
@@ -42,7 +42,26 @@ class SeatMap extends Component {
   };
 
   print = () => {
-    console.log("Print");
+
+    const movieID = this.props.match.params.movieID;
+    const cinemaID = this.props.match.params.cinemaID;
+    let show_time =
+      this.props &&
+      this.props.location &&
+      this.props.location.state &&
+      this.props.location.state.show_time;
+
+    let data = {
+      movieID,
+      cinemaID,
+      show_time,
+      selectedSeats: this.state.selectedSeats
+    };
+
+    console.log("Print", data);
+
+    this.props.addTicket(data)
+
     var content = document.getElementById("ticket");
     var pri = document.getElementById("ifmcontentstoprint").contentWindow;
     pri.document.open();
@@ -71,6 +90,7 @@ class SeatMap extends Component {
 
   render() {
     const { selectedSeats, totalAmount, showModal } = this.state;
+    let selectedOne = ["B1", "B2", "C3"];
     const seatNumbers = [
       "A1",
       "A2",
@@ -105,7 +125,7 @@ class SeatMap extends Component {
         <div
           key={seatNumber}
           className={
-            selectedSeats.includes(seatNumber) ? "seat selected" : "seat"
+            selectedSeats.includes(seatNumber) ? "seat selected" : selectedOne.includes(seatNumber) ? "seat booked" : "seat"
           }
           onClick={() => this.toggleSeatSelect(seatNumber)}
         >
@@ -233,7 +253,7 @@ class SeatMap extends Component {
                       name: this.props.user.name,
                       movie_name: this.state.movie.name,
                       cinema_name: this.state.cinema.name,
-                      show_time,
+                      show_time
                     }}
                   />
                 </ModalBody>
@@ -304,8 +324,8 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    // addMovie: data => dispatch(addMovie(data)),
-    // fetchCinemas: () => dispatch(fetchCinemas())
+    fetchTickets: () => dispatch(fetchTickets()),
+    addTicket: data => dispatch(addTicket(data))
   };
 };
 

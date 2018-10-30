@@ -143,9 +143,9 @@ class NavHeader extends Component {
                   <Link to="/profile">
                     <MenuItem onClick={this.handleClose}>My profile</MenuItem>
                   </Link>
-                  <Link to="/my-tickets">
+                  {/* <Link to="/my-tickets">
                     <MenuItem onClick={this.handleClose}>My tickets</MenuItem>
-                  </Link>
+                  </Link> */}
                   <Link to="/change-password">
                     {" "}
                     <MenuItem onClick={this.handleClose}>
