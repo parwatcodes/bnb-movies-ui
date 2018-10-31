@@ -42,7 +42,6 @@ class SeatMap extends Component {
   };
 
   print = () => {
-
     const movieID = this.props.match.params.movieID;
     const cinemaID = this.props.match.params.cinemaID;
     let show_time =
@@ -60,7 +59,7 @@ class SeatMap extends Component {
 
     console.log("Print", data);
 
-    this.props.addTicket(data)
+    this.props.addTicket(data);
 
     var content = document.getElementById("ticket");
     var pri = document.getElementById("ifmcontentstoprint").contentWindow;
@@ -74,9 +73,19 @@ class SeatMap extends Component {
   componentDidMount() {
     const movieID = this.props.match.params.movieID;
     const cinemaID = this.props.match.params.cinemaID;
+    let show_time =
+      this.props &&
+      this.props.location &&
+      this.props.location.state &&
+      this.props.location.state.show_time;
 
     let movie = this.props.movies.find(mov => mov._id === movieID);
     let cinema = this.props.cinemas.find(cine => cine._id === cinemaID);
+    this.props.fetchTickets({
+      movieID,
+      cinemaID,
+      show_time
+    });
     this.setState(
       {
         movie,
@@ -125,7 +134,11 @@ class SeatMap extends Component {
         <div
           key={seatNumber}
           className={
-            selectedSeats.includes(seatNumber) ? "seat selected" : selectedOne.includes(seatNumber) ? "seat booked" : "seat"
+            selectedSeats.includes(seatNumber)
+              ? "seat selected"
+              : selectedOne.includes(seatNumber)
+                ? "seat booked"
+                : "seat"
           }
           onClick={() => this.toggleSeatSelect(seatNumber)}
         >
@@ -324,7 +337,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    fetchTickets: () => dispatch(fetchTickets()),
+    fetchTickets: params => dispatch(fetchTickets(params)),
     addTicket: data => dispatch(addTicket(data))
   };
 };

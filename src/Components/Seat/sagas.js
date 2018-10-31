@@ -3,37 +3,41 @@ import axios from "axios";
 import { ToastContainer, toast } from "react-toastify";
 import history from "../../history";
 
-import { ADD_USER_TICKET, FETCH_USER_TICKETS } from "./constants";
+import { ADD_USER_TICKET, FETCH_USER_TICKETS, FETCH_USER_TICKETS_SUCCESS } from "./constants";
 
-function* watcherFetchMoviesSaga() {
-  yield takeLatest(FETCH_USER_TICKETS, workerFetchMoviesSaga);
+function* watcherFetchCinemasSaga() {
+  yield takeLatest(FETCH_USER_TICKETS, workerFetchSeatsSaga);
 }
 
-function* workerFetchMoviesSaga() {
+function* workerFetchSeatsSaga(payload) {
+  debugger
   try {
-    const url = "http://localhost:3001/api/v1/movies";
+    let { params } = payload;
+    debugger
+    const url = "http://localhost:3001/api/v1/seats";
 
     const response = yield call(() => {
-      return axios.get(url);
+      return axios.get(url, params);
     });
+
 
     let {
       data: { data }
     } = response;
-    // yield put({ type: FETCH_MOVIES_SUCCESS, data });
+    yield put({ type: FETCH_USER_TICKETS_SUCCESS, data });
   } catch (error) {
     console.log("​}catch -> error", error);
     // dispatch a failure action to the store with the error
   }
 }
 
-function* watcherPostMovieSaga() {
-  yield takeLatest(ADD_USER_TICKET, workerPostMovieSaga);
+function* watcherPostSeatSaga() {
+  yield takeLatest(ADD_USER_TICKET, workerPostSeatSaga);
 }
 
-function* workerPostMovieSaga(payload) {
+function* workerPostSeatSaga(payload) {
   let { type, data } = payload;
-  debugger
+
   try {
     const url = "http://localhost:3001/api/v1/seats";
 
@@ -51,5 +55,5 @@ function* workerPostMovieSaga(payload) {
 }
 
 export default function* rootSaga() {
-  yield all([fork(watcherFetchMoviesSaga), fork(watcherPostMovieSaga)]);
+  yield all([fork(workerFetchSeatsSaga), fork(watcherPostSeatSaga)]);
 }
