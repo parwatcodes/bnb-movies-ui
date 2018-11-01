@@ -30,7 +30,7 @@ const cinemaReducer = (state = initialState, action) => {
     case DELETE_CINEMA_SUCCESS:
       return {
         ...state,
-        data: state.data.filter(({ _id }) => _id !== action.cinemaID)
+        data: state.data.filter((da) => da._id !== action.cinemaID)
       };
     default:
       return state;

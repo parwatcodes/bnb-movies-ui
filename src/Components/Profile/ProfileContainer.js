@@ -3,6 +3,7 @@ import { withFormik } from "formik";
 import { connect } from "react-redux";
 import * as Yup from "yup";
 import Select from "react-select";
+import { updateProfile } from "./actions"
 class Profile extends Component {
   constructor(props) {
     super(props);
@@ -155,15 +156,16 @@ const EnhancedForm = withFormik({
   mapPropsToValues: props => {
     return { ...props.user };
   },
-  validationSchema: Yup.object().shape({
-    name: Yup.string().required("name is required!"),
-    address: Yup.string().required("address is required"),
-    phone: Yup.number().required("Please enter the phone"),
-    seats: Yup.string().required("Please enter your seats")
-  }),
+  // validationSchema: Yup.object().shape({
+  //   name: Yup.string().required("name is required!"),
+  //   address: Yup.string().required("address is required"),
+  //   phone: Yup.number().required("Please enter the phone"),
+  //   seats: Yup.string().required("Please enter your seats")
+  // }),
 
-  handleSubmit: (values, { props: { addCinema }, setSubmitting }) => {
-    // addCinema(formData);
+  handleSubmit: (values, { props: { updateProfile, user }, setSubmitting }) => {
+    let userID = user._id;
+    updateProfile(userID, values);
   }
 })(Profile);
 
@@ -175,7 +177,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    //   addCinema: data => dispatch(addCinema(data))
+    updateProfile: (movieID, data) => dispatch(updateProfile(movieID, data))
   };
 };
 

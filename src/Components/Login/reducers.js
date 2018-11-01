@@ -10,10 +10,11 @@ const userInitialState = {
 
 export function user(state = userInitialState, action) {
   if (!action) return state;
-
   switch (action.type) {
     case LOGIN_SUCCESS:
       return action.data.user;
+    case "PROFILE_UPDATE_SUCCESS":
+      return action.data.data
     case LOGOUT:
       return {};
     default:
