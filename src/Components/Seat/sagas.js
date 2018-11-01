@@ -5,21 +5,18 @@ import history from "../../history";
 
 import { ADD_USER_TICKET, FETCH_USER_TICKETS, FETCH_USER_TICKETS_SUCCESS } from "./constants";
 
-function* watcherFetchCinemasSaga() {
+function* watcherFetchSeatsSaga() {
   yield takeLatest(FETCH_USER_TICKETS, workerFetchSeatsSaga);
 }
 
 function* workerFetchSeatsSaga(payload) {
-  debugger
   try {
-    let { params } = payload;
-    debugger
+    let { params: data1 } = payload;
     const url = "http://localhost:3001/api/v1/seats";
 
     const response = yield call(() => {
-      return axios.get(url, params);
+      return axios.post(url, {...data1});
     });
-
 
     let {
       data: { data }
@@ -37,14 +34,12 @@ function* watcherPostSeatSaga() {
 
 function* workerPostSeatSaga(payload) {
   let { type, data } = payload;
-
   try {
-    const url = "http://localhost:3001/api/v1/seats";
+    const url = "http://localhost:3001/api/v1/seats/post";
 
     const response = yield call(() => {
       return axios.post(url, data);
     });
-
     const resp = response.data;
     // dispatch a success action to the store with the new dog
   } catch (error) {
@@ -55,5 +50,5 @@ function* workerPostSeatSaga(payload) {
 }
 
 export default function* rootSaga() {
-  yield all([fork(workerFetchSeatsSaga), fork(watcherPostSeatSaga)]);
+  yield all([fork(watcherFetchSeatsSaga), fork(watcherPostSeatSaga)]);
 }

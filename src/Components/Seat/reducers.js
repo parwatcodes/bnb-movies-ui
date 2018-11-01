@@ -10,7 +10,6 @@ import {
 const initialState = {
   data: [],
   loading: false,
-  ds: true
 };
 
 const seatReducer = (state = initialState, action) => {

@@ -9,7 +9,6 @@ import {
 
 export function fetchTickets(params) {
   console.log(params);
-  debugger
   return {
     type: FETCH_USER_TICKETS,
     params

@@ -7,6 +7,7 @@ import TicketComponent from "../Ticket/TicketComponent";
 import * as Yup from "yup";
 import "./Seat.css";
 import { addTicket, fetchTickets } from "./actions";
+import _ from 'lodash'
 class SeatMap extends Component {
   constructor() {
     super();
@@ -61,13 +62,13 @@ class SeatMap extends Component {
 
     this.props.addTicket(data);
 
-    var content = document.getElementById("ticket");
-    var pri = document.getElementById("ifmcontentstoprint").contentWindow;
-    pri.document.open();
-    pri.document.write(content.innerHTML);
-    pri.document.close();
-    pri.focus();
-    pri.print();
+    // var content = document.getElementById("ticket");
+    // var pri = document.getElementById("ifmcontentstoprint").contentWindow;
+    // pri.document.open();
+    // pri.document.write(content.innerHTML);
+    // pri.document.close();
+    // pri.focus();
+    // pri.print();
   };
 
   componentDidMount() {
@@ -136,7 +137,7 @@ class SeatMap extends Component {
           className={
             selectedSeats.includes(seatNumber)
               ? "seat selected"
-              : selectedOne.includes(seatNumber)
+              : _.flatten(this.props.seats).includes(seatNumber)
                 ? "seat booked"
                 : "seat"
           }
@@ -331,7 +332,8 @@ const mapStateToProps = state => {
   return {
     user: state.user,
     movies: state.movies.data,
-    cinemas: state.cinemas.data
+    cinemas: state.cinemas.data,
+    seats: state.seats.data.length && state.seats.data[0].selectedSeats
   };
 };
 
