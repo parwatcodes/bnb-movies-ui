@@ -14,7 +14,7 @@ import Select from "react-select";
 import { withFormik } from "formik";
 import { connect } from "react-redux";
 import * as Yup from "yup";
-import { addMovie } from "./actions";
+import { updateMovieByID } from "./actions";
 import { fetchCinemas } from "../Cinemas/actions";
 
 class Thumb extends React.Component {
@@ -322,23 +322,7 @@ class MovieEditForm extends Component {
               <div className="invalid-feedback">{errors.cast}</div>
             )}
         </FormGroup>
-        {/* <FormGroup>
-          <Input
-            type="file"
-            name="poster"
-            id="file"
-            onChange={event => {
-              setFieldValue("poster", event.currentTarget.files[0]);
-            }}
-            // className={`form-control ${errors.poster &&
-            //   touched.poster &&
-            //   "is-invalid"}`}
-          />
-          {errors.poster &&
-            touched.poster && (
-              <div className="invalid-feedback">{errors.poster}</div>
-            )}
-        </FormGroup> */}
+
         <FormGroup className="row">
         <label className="col-sm-2 col-form-label"> Trailer link </label>
           <div className="col-sm-10">
@@ -360,100 +344,17 @@ class MovieEditForm extends Component {
               <div className="invalid-feedback">{errors.trailer_link}</div>
             )}
         </FormGroup>
-
-        {/* <FormGroup>
-          <Label>Please select cinemas</Label>
-          <fieldset
-            style={{
-              border: "3px solid"
+        <FormGroup>
+          <Input
+            type="file"
+            name="poster"
+            id="file"
+            onChange={event => {
+              setFieldValue("poster", event.currentTarget.files[0]);
             }}
-          >
-            {cinemas.map(cine => {
-              let cineID = cine._id;
-              return (
-                <FormGroup check>
-                  <Label check>
-                    <Input
-                      type="checkbox"
-                      onClick={event => {
-                        this.toggle();
-                        this.handleCinemaCheck(event, cineID);
-                      }}
-                    />{" "}
-                    {cine.name} - {cineID}
-                    <Modal
-                      isOpen={this.state.modal}
-                      toggle={this.toggle}
-                      className={this.props.className}
-                    >
-                      <ModalHeader toggle={this.toggle}>
-                        Please select show timings for{" "}
-                        <b>
-                          {cine.name} - {cineID}
-                        </b>
-                      </ModalHeader>
-                      <ModalBody>
-                        {cineID}
-                        <FormGroup check>
-                          <Label check>
-                            <Input
-                              type="checkbox"
-                              onClick={event => {
-                                this.handleShowCheck(event, cineID, "9 AM");
-                              }}
-                            />{" "}
-                            9 AM
-                          </Label>
-                        </FormGroup>{" "}
-                        <FormGroup check>
-                          <Label check>
-                            <Input
-                              type="checkbox"
-                              onClick={event => {
-                                this.handleShowCheck(event, cineID, "12 PM");
-                              }}
-                            />{" "}
-                            12 PM
-                          </Label>
-                        </FormGroup>{" "}
-                        <FormGroup check>
-                          <Label check>
-                            <Input
-                              type="checkbox"
-                              onClick={event => {
-                                this.handleShowCheck(event, cineID, "3 PM");
-                              }}
-                            />{" "}
-                            3 PM
-                          </Label>
-                        </FormGroup>{" "}
-                        <FormGroup check>
-                          <Label check>
-                            <Input
-                              type="checkbox"
-                              onClick={event => {
-                                this.handleShowCheck(event, cineID, "6 PM");
-                              }}
-                            />{" "}
-                            6 PM
-                          </Label>
-                        </FormGroup>
-                      </ModalBody>
-                      <ModalFooter>
-                        <Button color="primary" onClick={this.toggle}>
-                          OK
-                        </Button>{" "}
-                        <Button color="secondary" onClick={this.toggle}>
-                          Cancel
-                        </Button>
-                      </ModalFooter>
-                    </Modal>
-                  </Label>
-                </FormGroup>
-              );
-            })}
-          </fieldset>
-        </FormGroup> */}
+          />
+          <Thumb file={values.poster} />
+        </FormGroup>
         <Button type="submit">Update</Button>
       </Form>
     );
@@ -468,25 +369,24 @@ const EnhancedForm = withFormik({
     return { ...movie };
   },
 
-  validationSchema: Yup.object().shape({
-    name: Yup.string().required("name is required!"),
-    description: Yup.string().required("description is required"),
-    price: Yup.number().required("Please enter the price"),
-    run_time: Yup.string().required("Please enter your run_time"),
-    director: Yup.string().required("Please enter director of movie"),
-    cast: Yup.string().required("Please enter cast of movie"),
-    trailer_link: Yup.string().required(
-      "Please enter the trailer link from youtube"
-    )
-    // gender: Yup.string().required("Please enter your gender")
-  }),
+  // validationSchema: Yup.object().shape({
+  //   name: Yup.string().required("name is required!"),
+  //   description: Yup.string().required("description is required"),
+  //   run_time: Yup.string().required("Please enter your run_time"),
+  //   director: Yup.string().required("Please enter director of movie"),
+  //   cast: Yup.string().required("Please enter cast of movie"),
+  //   trailer_link: Yup.string().required(
+  //     "Please enter the trailer link from youtube"
+  //   )
+  // }),
 
-  handleSubmit: (values, { props: { addMovie }, setSubmitting }) => {
+  handleSubmit: (values, { props: { updateMovieByID, match }, setSubmitting }) => {
     let formData = new FormData();
     for (let key in values) {
       formData.append(key, values[key]);
     }
-    addMovie(formData);
+    let movieID = match.params.movieID
+    updateMovieByID(movieID, formData);
   }
 })(MovieEditForm);
 
@@ -499,7 +399,7 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    addMovie: data => dispatch(addMovie(data)),
+    updateMovieByID: (movieID, data) => dispatch(updateMovieByID(movieID, data)),
     fetchCinemas: () => dispatch(fetchCinemas())
   };
 };

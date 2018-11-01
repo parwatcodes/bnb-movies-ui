@@ -49,11 +49,11 @@ class CinemaComponent extends Component {
                   <CardActionArea>
                     <CardMedia
                       component="img"
-                      alt="Contemplative Reptile"
+                      alt={cinema.name}
                       className={classes.media}
                       height="140"
                       image={cinema.poster_link}
-                      title="Contemplative Reptile"
+                      title="image"
                     />
                     <CardContent>
                       <Typography gutterBottom variant="h5" component="h2">
@@ -65,11 +65,11 @@ class CinemaComponent extends Component {
                       Phone:{" "}
                       <Typography component="h3">{cinema.phone}</Typography>
                       <br />
-                      <Typography component="p">
+                      {/* <Typography component="p">
                         Lizards are a widespread group of squamate reptiles,
                         with over 6,000 species, ranging across all continents
                         except Antarctica
-                      </Typography>
+                      </Typography> */}
                     </CardContent>
                   </CardActionArea>
                   {role === 1 && (

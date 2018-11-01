@@ -65,12 +65,23 @@ function* watcherUpdateMovieByIDSaga() {
 function* workerUpdateMovieByIDSaga(payload) {
   let { movieID, data, type } = payload;
   try {
-    const url = `http://localhost:3001/api/v1/movie/${movieID}`;
+    const url = `http://localhost:3001/api/v1/movies/${movieID}`;
 
     const response = yield call(() => {
-      return axios.post(url, data);
+      return axios.put(url, data);
     });
 
+    yield put(
+      toast.success("Movie updated success", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true
+      })
+    );
+    history.push(`/getMovieDetails/${movieID}`);
     const resp = response.data;
   } catch (error) {}
 }

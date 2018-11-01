@@ -145,7 +145,7 @@ class CinemaEditForm extends Component {
               <div className="invalid-feedback">{errors.phone}</div>
             )}
         </FormGroup>
-        <FormGroup className="row">
+        {/* <FormGroup className="row">
         <label className="col-sm-2 col-form-label"> Total Seats </label>
           <div className="col-sm-10">
           <Input
@@ -165,8 +165,8 @@ class CinemaEditForm extends Component {
             touched.seats && (
               <div className="invalid-feedback">{errors.seats}</div>
             )}
-        </FormGroup>
-        <FormGroup>
+        </FormGroup> */}
+        {/* <FormGroup>
           <Input
             type="file"
             name="poster"
@@ -176,7 +176,7 @@ class CinemaEditForm extends Component {
             }}
           />
           <Thumb file={values.poster} />
-        </FormGroup>
+        </FormGroup> */}
         <Button type="submit">Submit</Button>
       </Form>
     );
@@ -193,7 +193,6 @@ const EnhancedForm = withFormik({
     name: Yup.string().required("name is required!"),
     address: Yup.string().required("address is required"),
     phone: Yup.number().required("Please enter the phone"),
-    seats: Yup.string().required("Please enter your seats")
   }),
 
   handleSubmit: (
