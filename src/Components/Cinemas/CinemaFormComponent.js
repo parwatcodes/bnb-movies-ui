@@ -171,11 +171,9 @@ const EnhancedForm = withFormik({
 
   handleSubmit: (values, { props: { addCinema }, setSubmitting }) => {
     let formData = new FormData();
-    debugger
     for (let key in values) {
       formData.append(key, values[key]);
     }
-    debugger
     addCinema(formData);
   }
 })(CinemaForm);

@@ -41,14 +41,11 @@ function* watcherPostCinemaSaga() {
 
 function* workerPostCinemaSaga(payload) {
   let { type, data } = payload;
-  debugger
   try {
     const url = "http://localhost:3001/api/v1/cinemas";
     const response = yield call(() => {
       return axios.post(url, data);
     });
-
-    debugger
 
     const resp = response.data;
     yield put(
