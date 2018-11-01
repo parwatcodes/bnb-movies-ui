@@ -41,11 +41,14 @@ function* watcherPostCinemaSaga() {
 
 function* workerPostCinemaSaga(payload) {
   let { type, data } = payload;
+  debugger
   try {
     const url = "http://localhost:3001/api/v1/cinemas";
     const response = yield call(() => {
       return axios.post(url, data);
     });
+
+    debugger
 
     const resp = response.data;
     yield put(
@@ -90,6 +93,17 @@ function* workerUpdateCinemaByIDSaga({ cinemaID, data }) {
     });
 
     const resp = response.data;
+    yield put(
+      toast.success("Cinema Remove success", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true
+      })
+    );
+    history.push("/cinemas");
   } catch (error) {}
 }
 

@@ -167,14 +167,15 @@ const EnhancedForm = withFormik({
     name: Yup.string().required("name is required!"),
     address: Yup.string().required("address is required"),
     phone: Yup.number().required("Please enter the phone"),
-    seats: Yup.string().required("Please enter your seats")
   }),
 
   handleSubmit: (values, { props: { addCinema }, setSubmitting }) => {
     let formData = new FormData();
+    debugger
     for (let key in values) {
       formData.append(key, values[key]);
     }
+    debugger
     addCinema(formData);
   }
 })(CinemaForm);
