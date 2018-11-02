@@ -146,12 +146,12 @@ class NavHeader extends Component {
                   {/* <Link to="/my-tickets">
                     <MenuItem onClick={this.handleClose}>My tickets</MenuItem>
                   </Link> */}
-                  <Link to="/change-password">
+                  {/* <Link to="/change-password">
                     {" "}
                     <MenuItem onClick={this.handleClose}>
                       Change passsword
                     </MenuItem>
-                  </Link>
+                  </Link> */}
                   <MenuItem
                     onClick={() => {
                       logout();

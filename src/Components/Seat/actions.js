@@ -8,7 +8,6 @@ import {
 } from "./constants";
 
 export function fetchTickets(params) {
-  console.log(params);
   return {
     type: FETCH_USER_TICKETS,
     params
