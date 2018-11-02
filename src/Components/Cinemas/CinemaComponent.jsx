@@ -79,7 +79,7 @@ class CinemaComponent extends Component {
                           Edit
                         </Button>
                       </Link>
-                      <Button
+                      {/* <Button
                         size="small"
                         color="secondary"
                         onClick={() => {
@@ -87,7 +87,7 @@ class CinemaComponent extends Component {
                         }}
                       >
                         DELETE CINEMA
-                      </Button>
+                      </Button> */}
                     </CardActions>
                   )}
                 </Card>
