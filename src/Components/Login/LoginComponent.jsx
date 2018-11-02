@@ -18,7 +18,6 @@ const LoginForm = props => {
     handleReset
   } = props;
 
-  let email = props && props.location && props.location.state && props.location.state.email
   return (
     <form className="p-5 width-50-center" onSubmit={handleSubmit}>
       <h1>Login</h1>
@@ -29,7 +28,7 @@ const LoginForm = props => {
           className={`form-control ${errors.email &&
             touched.email &&
             "is-invalid"}`}
-          value={values.email || email}
+          value={values.email}
           onChange={handleChange}
           onBlur={handleBlur}
           placeholder={"Email"}

@@ -45,6 +45,7 @@ class SeatMap extends Component {
   print = () => {
     const movieID = this.props.match.params.movieID;
     const cinemaID = this.props.match.params.cinemaID;
+    const userID = this.props.user._id
     let show_time =
       this.props &&
       this.props.location &&
@@ -52,6 +53,7 @@ class SeatMap extends Component {
       this.props.location.state.show_time;
 
     let data = {
+      userID,
       movieID,
       cinemaID,
       show_time,
