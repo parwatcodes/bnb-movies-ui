@@ -50,9 +50,20 @@ function* workerPostMovieSaga(payload) {
     });
 
     const resp = response.data;
+    history.push('/movies')
     // dispatch a success action to the store with the new dog
   } catch (error) {
     console.log("​}catch -> error", error);
+    yield put(
+      toast.error("Movie add failed", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true
+      })
+    );
     // dispatch a failure action to the store with the error
     // yield put({ type: LOGIN_ERROR, error });
   }
@@ -83,7 +94,18 @@ function* workerUpdateMovieByIDSaga(payload) {
     );
     history.push(`/getMovieDetails/${movieID}`);
     const resp = response.data;
-  } catch (error) {}
+  } catch (error) {
+    yield put(
+      toast.error("Update Failed", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true
+      })
+    );
+  }
 }
 
 function* watcherDeleteMovieSaga() {
@@ -111,7 +133,18 @@ function* workerDeleteMovieSaga(payload) {
     );
     history.push("/movies");
     // yield put({ type: DELETE_MOVIE_SUCCESS, data: cinemaID });
-  } catch (error) {}
+  } catch (error) {
+    yield put(
+      toast.error("Movie delete failed", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true
+      })
+    );
+  }
 }
 
 export default function* rootSaga() {

@@ -157,18 +157,18 @@ class MovieForm extends Component {
         <FormGroup>
           <Input
             type="date"
-            name="date"
+            name="release_date"
             id="examplePassword"
-            placeholder="Release date of movie"
+            placeholder="Release release_date of movie"
             onChange={handleChange}
             onBlur={handleBlur}
-            className={`form-control ${errors.date &&
-              touched.date &&
+            className={`form-control ${errors.release_date &&
+              touched.release_date &&
               "is-invalid"}`}
           />
-          {errors.date &&
-            touched.date && (
-              <div className="invalid-feedback">{errors.date}</div>
+          {errors.release_date &&
+            touched.release_date && (
+              <div className="invalid-feedback">{errors.release_date}</div>
             )}
         </FormGroup>
         <FormGroup>
@@ -257,7 +257,8 @@ class MovieForm extends Component {
             )}
         </FormGroup>
 
-        <FormGroup style={{ textAlign: 'left' }}>
+
+        {/* <FormGroup style={{ textAlign: 'left' }}>
           <Label>Please select cinemas:</Label>
           <fieldset
             style={{
@@ -296,7 +297,7 @@ class MovieForm extends Component {
               );
             })}
           </fieldset>
-        </FormGroup>
+        </FormGroup> */}
         <Button type="submit">Submit</Button>
       </Form>
     );
@@ -314,6 +315,7 @@ const EnhancedForm = withFormik({
   validationSchema: Yup.object().shape({
     name: Yup.string().required("name is required!"),
     description: Yup.string().required("description is required"),
+    release_date: Yup.string().required("release_date is required"),
     price: Yup.number().required("Please enter the price"),
     run_time: Yup.string().required("Please enter your run_time"),
     director: Yup.string().required("Please enter director of movie"),
@@ -325,11 +327,11 @@ const EnhancedForm = withFormik({
   }),
 
   handleSubmit: (values, { props: { addMovie } }, state) => {
-    // let formData = new FormData();
-    // for (let key in values) {
-    //   formData.append(key, values[key]);
-    // }
-    // addMovie(formData);
+    let formData = new FormData();
+    for (let key in values) {
+      formData.append(key, values[key]);
+    }
+    addMovie(formData);
   }
 })(MovieForm);
 

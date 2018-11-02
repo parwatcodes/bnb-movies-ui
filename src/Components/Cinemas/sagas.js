@@ -101,7 +101,21 @@ function* workerUpdateCinemaByIDSaga({ cinemaID, data }) {
       })
     );
     history.push("/cinemas");
-  } catch (error) {}
+  } catch (error) {
+    yield put(
+      toast.error(
+        error.response.data.message || "Error",
+        {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true
+        }
+      )
+    );
+  }
 }
 
 function* watcherDeleteCinemaSaga() {
@@ -129,7 +143,21 @@ function* workerDeleteCinemaSaga(payload) {
     );
     history.push("/cinemas");
     // yield put({ type: DELETE_CINEMA_SUCCESS, data: cinemaID });
-  } catch (error) {}
+  } catch (error) {
+    yield put(
+      toast.error(
+        error.response.data.message || "Error",
+        {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true
+        }
+      )
+    );
+  }
 }
 
 export default function* rootSaga() {
