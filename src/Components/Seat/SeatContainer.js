@@ -53,6 +53,7 @@ class SeatMap extends Component {
       this.props.location.state.show_time;
 
     let data = {
+      price: this.state.totalAmount * this.state.selectedSeats.length,
       userID,
       movieID,
       cinemaID,
@@ -60,17 +61,15 @@ class SeatMap extends Component {
       selectedSeats: this.state.selectedSeats
     };
 
-    console.log("Print", data);
-
     this.props.addTicket(data);
 
-    // var content = document.getElementById("ticket");
-    // var pri = document.getElementById("ifmcontentstoprint").contentWindow;
-    // pri.document.open();
-    // pri.document.write(content.innerHTML);
-    // pri.document.close();
-    // pri.focus();
-    // pri.print();
+    var content = document.getElementById("ticket");
+    var pri = document.getElementById("ifmcontentstoprint").contentWindow;
+    pri.document.open();
+    pri.document.write(content.innerHTML);
+    pri.document.close();
+    pri.focus();
+    pri.print();
   };
 
   componentDidMount() {
@@ -102,7 +101,6 @@ class SeatMap extends Component {
 
   render() {
     const { selectedSeats, totalAmount, showModal } = this.state;
-    let selectedOne = ["B1", "B2", "C3"];
     const seatNumbers = [
       "A1",
       "A2",
