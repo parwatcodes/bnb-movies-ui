@@ -9,7 +9,7 @@ class TicketComponent extends Component {
     const {
       totalAmount,
       selectedSeats,
-      data: { name, movie_name, cinema_name, show_time }
+      data: { name, movie_name, cinema_name, show_time, release_date, run_time }
     } = this.props;
     return (
       <div className="cardWrap">
@@ -34,7 +34,7 @@ class TicketComponent extends Component {
             <span>name</span>
           </div>
           <div className="seat">
-            <h2>Wed, 11-2018</h2>
+            <h2>{release_date}</h2>
             <span>date</span>
           </div>
           <div className="time">

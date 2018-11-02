@@ -214,8 +214,10 @@ class SeatMap extends Component {
             />
             <h3>{this.state.movie.name}</h3>
             <p>{this.state.movie.description}</p>
-            <span>Wed, 28 Jun </span>
-            <small>16:00 (2h 15m)</small>
+            <span> <strong>Release Date: </strong> {this.state.movie.release_date}</span>
+            <br/>
+            <br />
+            <small><strong>Run time: </strong>{this.state.movie.run_time}</small>
           </div>
           <section>
             <ul class="legend">
@@ -267,6 +269,7 @@ class SeatMap extends Component {
                       name: this.props.user.name,
                       movie_name: this.state.movie.name,
                       cinema_name: this.state.cinema.name,
+                      release_date: this.state.movie.release_date,
                       show_time
                     }}
                   />
