@@ -1,6 +1,6 @@
 # BNB Movies UI
 
-Frontend part if BNB movies.
+Frontend part if BNB movies. CODE REUSE AND MODULARITY and HOCs HASNT BEEN DONE MUCH
 
 ## Folder Structure Conventions
 
@@ -78,6 +78,7 @@ Add additional notes about how to deploy this on a live system
 ## Authors
 
 - **Parwat Kunwar**
+- **Bishnu Basyal**
 
 ## License
 
