@@ -88,10 +88,32 @@ This project is licensed under the MIT License
 
 - Hat tip to anyone whose code was used
 
-![alt text](https://imgur.com/2TFmIOe)
-![alt text](https://imgur.com/a/Uw7fZkh)
-![alt text](https://imgur.com/a/CDwOCcB)
-![alt text](https://imgur.com/a/es7OeCD)
-![alt text](https://imgur.com/a/suXKPlq)
-![ALL TICKETS BOOKED](https://imgur.com/a/7p9pYF4)
-![alt text](https://imgur.com/a/ZB1Pr7P)
+------
+
+# ScreenShots
+
+1. Movies
+
+![movies](/images/movie.png)
+
+2. Movie Details
+
+![movie details](/images/moviedetails.png)
+
+3. Theatres
+
+![theatres](/images/theatre.png)
+
+4. Show
+
+![show](/images/show.png)
+
+5. Ticket Booking
+
+![ticketbooking1](/images/ticketbooking1.png)
+
+![ticketbooking2](/images/ticketbooking2.png)
+
+6. Movie ticket confirm
+
+![movieticketconfirm](/images/movieticketconfirm.png)
